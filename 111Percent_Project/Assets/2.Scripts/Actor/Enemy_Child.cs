@@ -71,7 +71,7 @@ public class Enemy_Child : MonoBehaviour
         gameObject.SafeSetActive(false);
     }
 
-    public void GetHit(int dmg =1)
+    public void GetHit(int dmg = 10)
     {
         if (isDeactivated == true)
             return;

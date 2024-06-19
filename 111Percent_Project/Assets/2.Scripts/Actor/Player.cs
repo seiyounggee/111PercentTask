@@ -318,7 +318,7 @@ public class Player : Agent
             if (enemyChild != null)
             {
                 //Debug.Log("Hit Enemy!!");
-                enemyChild.GetHit(1);
+                enemyChild.GetHit(10);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
                 var randomX = UnityEngine.Random.Range(-3f, 3f);

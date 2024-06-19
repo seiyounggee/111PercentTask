@@ -68,5 +68,7 @@ public class CommonDefine
         IncreaseAttack, //공격력 증가
         IncreaseSpeed,  //점프 이동속도 증가
         DecreaseDefenseCooltime,  //디펜 쿨타임 감소
+        IncreaseAttackRange,
+        IncreaseDefenseRange,
     }
 }

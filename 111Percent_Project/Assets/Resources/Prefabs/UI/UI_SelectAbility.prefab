@@ -1553,8 +1553,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftBtn: {fileID: 3633391052275514256}
+  nameTxt_left: {fileID: 47567346615139009}
+  descTxt_left: {fileID: 6092531717807559458}
   centerBtn: {fileID: 2423006568850819998}
+  nameTxt_center: {fileID: 3409785056079504550}
+  descTxt_center: {fileID: 584581233723304613}
   rightBtn: {fileID: 5897715791156854419}
+  nameTxt_right: {fileID: 1747409834852191386}
+  descTxt_right: {fileID: 7232632580322773426}
 --- !u!1 &7860680288943787241
 GameObject:
   m_ObjectHideFlags: 0
