@@ -99,6 +99,19 @@ public class PrefabManager : MonoSingleton<PrefabManager>
 
     [SerializeField] public List<GameObject> PlayerSkinPrefabList = new List<GameObject>();
 
+
+    #region Effect
+
+    public GameObject Effect_MegaExplosionYellow = null;
+    public GameObject Effect_ShadowExplosion2 = null;
+    public GameObject Effect_Hit = null;
+    public GameObject Effect_KaPow = null;
+    public GameObject Effect_Crack = null;
+    public GameObject Effect_SwordHitRedCritical = null;
+    public GameObject Effect_ConfettiBlastRainbow = null;
+
+    #endregion
+
     #endregion
 
     #region UI Prefabs

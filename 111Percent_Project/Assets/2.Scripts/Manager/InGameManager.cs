@@ -30,7 +30,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         SetPlayer();
         SetCamera();
         //SetInput();
-        //SetPoolGameObjects();
+        SetPoolGameObjects();
 
         SetGameState(CommonDefine.InGameState.Play);
         yield return StartCoroutine(EnemyRound());

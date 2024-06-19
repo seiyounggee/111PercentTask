@@ -48,33 +48,73 @@ MonoBehaviour:
   - roundNumber: 1
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 2
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 3
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 4
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 5
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 6
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 7
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 8
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 9
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
   - roundNumber: 10
     enemyType: 0
     enemyPrefabName: 
+    hp: 0
+    fallDownSpeed: 0
+    jumpUpSpeed_PlayerCollision: 0
+    jumpUpSpeed_PlayerDefense: 0
 --- !u!1 &3767497647484758361
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +251,10 @@ MonoBehaviour:
   currentRoundIndex: -1
   lastRoundIndex: -1
   currentEnemy: {fileID: 0}
+  CurrentInGameState: 0
   mainCam: {fileID: 0}
   virtualCam: {fileID: 0}
+  pooledObjList: []
 --- !u!1 &8722823758404485140
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,3 +470,10 @@ MonoBehaviour:
   - {fileID: 1161073957598026625, guid: bf36cd20f8f47fa4080bcb40e2820995, type: 3}
   - {fileID: 4997876531015523535, guid: 10db77d3b2862ca4d99418afd2d298f8, type: 3}
   - {fileID: 6243825076744418702, guid: 2a3abfd0bfbb9d54c924cff3b0e6b9c1, type: 3}
+  Effect_MegaExplosionYellow: {fileID: 8205834649398507972, guid: 0bdddd00e5cfe2b4cb61977c4b3acaa5, type: 3}
+  Effect_ShadowExplosion2: {fileID: 2236829256048216604, guid: d2e9a5f1c1bc00f4dbfb524eb8cf86d6, type: 3}
+  Effect_Hit: {fileID: 2506224434292035710, guid: c0acc65ec3686ca409d5af0f3706f01f, type: 3}
+  Effect_KaPow: {fileID: 9195434068550794050, guid: e07bf5b92072b6b49894d61204849851, type: 3}
+  Effect_Crack: {fileID: 3378052082045523761, guid: d154c98d31fd9b24e84fa3b61e7b5f09, type: 3}
+  Effect_SwordHitRedCritical: {fileID: 2945880136696436242, guid: cbbc76158e75a6f4bb1bad50622adef1, type: 3}
+  Effect_ConfettiBlastRainbow: {fileID: 2523339095094963846, guid: ed600a6dda6015f4cad381b613457b48, type: 3}

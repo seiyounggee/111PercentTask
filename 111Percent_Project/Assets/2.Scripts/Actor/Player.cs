@@ -9,6 +9,9 @@ public class Player : Agent
     [SerializeField] Trigger_Callback attackTrigger = null;
     [SerializeField] Trigger_Callback defenseTrigger = null;
 
+    private Transform rightHand = null;
+    private Transform leftHand = null;
+
     public float speed = 10f;
     [ReadOnly] public bool isGrounded = false;
 
@@ -29,6 +32,19 @@ public class Player : Agent
 
     private float defenseInputCooltimeCounter = 0f;
     private float defenseInputCooltime = 3f;
+
+    private void Awake()
+    {
+        var childTrans = this.transform.GetComponentsInChildren<Transform>();
+        foreach (var i in childTrans)
+        {
+            if (i.gameObject.name.Contains("Hand_Right_jnt"))
+                rightHand = i;
+
+            if (i.gameObject.name.Contains("Left_Right_jnt"))
+                leftHand = i;
+        }
+    }
 
     private void OnEnable()
     {
@@ -195,6 +211,11 @@ public class Player : Agent
             {
                 //Debug.Log("Hit Enemy!!");
                 enemyChild.GetHit(1);
+
+                Vector3 pos = other.ClosestPoint(transform.position);
+                var randomX = UnityEngine.Random.Range(-5f, 5f);
+                pos.x += randomX;
+                InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_Hit, pos, Quaternion.identity);
             }
         }
     }
@@ -215,6 +236,9 @@ public class Player : Agent
                 enemyChild.GetBlocked();
 
                 defenseInputCooltimeCounter = defenseInputCooltime / 2f; //성공한 경우 시간 단축
+
+                Vector3 pos = other.ClosestPoint(transform.position);
+                InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_KaPow, pos, Quaternion.identity);
             }
         }
     }
