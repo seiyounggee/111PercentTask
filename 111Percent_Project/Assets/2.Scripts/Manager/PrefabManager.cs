@@ -95,7 +95,7 @@ public class PrefabManager : MonoSingleton<PrefabManager>
     #region InGame Prefabs
 
     public GameObject PlayerPrefab = null;
-    public GameObject EnemyPrefab = null;
+    public List<GameObject> EnemyPrefabList = new List<GameObject>();
 
     [SerializeField] public List<GameObject> PlayerSkinPrefabList = new List<GameObject>();
 

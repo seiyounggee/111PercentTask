@@ -52,6 +52,22 @@ public class Enemy : Agent
         }
     }
 
+    public void Show()
+    {
+        if (IsDead())
+        {
+#if UNITY_EDITOR
+            Debug.Log("<color=red>Showing a dead Enemy...?</color>");
+#endif
+        }
+        gameObject.SafeSetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SafeSetActive(false);
+    }
+
     private void PlayerCollision()
     {
         jumpUpVelocity = Vector3.up * 3f;
@@ -78,7 +94,7 @@ public class Enemy : Agent
         return false;
     }
 
-    private bool IsDead()
+    public bool IsDead()
     {
         foreach (var i in EnemyChildList)
         {

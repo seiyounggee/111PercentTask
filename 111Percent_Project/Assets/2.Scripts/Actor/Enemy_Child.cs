@@ -27,6 +27,8 @@ public class Enemy_Child : MonoBehaviour
     {
         enemyBase = GetComponentInParent<Enemy>();
         meshRenderer = GetComponent<MeshRenderer>();
+
+        bodyTrigger = GetComponent<Trigger_Callback>();
         isDeactivated = false;
 
         if (meshRenderer != null)

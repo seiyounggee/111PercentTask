@@ -10,12 +10,14 @@ public abstract class UIBase : MonoBehaviour
 
     internal virtual void OnEnable()
     {
-        transform.SetAsLastSibling();
+        if (transform.parent != null && transform.parent.SafeIsActive())
+            transform.SetAsLastSibling();
     }
 
     internal virtual void OnDisable()
     {
-        transform.SetAsFirstSibling();
+        if (transform.parent != null && transform.parent.SafeIsActive())
+            transform.SetAsFirstSibling();
     }
 
     public virtual void Show()
