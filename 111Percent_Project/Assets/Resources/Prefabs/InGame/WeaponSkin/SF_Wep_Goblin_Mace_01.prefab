@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6440559142458908687}
   - component: {fileID: 5776151084280137160}
   - component: {fileID: 1837935893085395923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SF_Wep_Goblin_Mace_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

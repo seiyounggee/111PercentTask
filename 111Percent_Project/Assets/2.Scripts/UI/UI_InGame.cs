@@ -36,7 +36,7 @@ public class UI_InGame : UIBase
 
     public void Clear()
     {
-        scoreTxt.SafeSetText(string.Empty);
+        scoreTxt.SafeSetText("0");
         comboTxt.SafeSetText(string.Empty);
 
         foreach (var i in healthObj) 
@@ -69,12 +69,19 @@ public class UI_InGame : UIBase
 
     public void ActivateGameOver()
     {
-        gameOverPopup.SafeSetActive(true);
+        UtilityInvoker.Invoke(this, () =>
+        {
+            gameOverPopup.SafeSetActive(true);
+        }, 2f, "gameoverPopup");
+
     }
 
     public void ActivateGameClear()
     {
-        gameClearPopup.SafeSetActive(true);
+        UtilityInvoker.Invoke(this, () =>
+        {
+            gameClearPopup.SafeSetActive(true);
+        }, 2f, "gameClearPopup");
     }
 
     public void ActivateHitUI()
@@ -89,6 +96,35 @@ public class UI_InGame : UIBase
         {
             hitUI.SafeSetActive(false);
         }, 0.3f);
+    }
+
+    public void UpdateCombo(string msg)
+    {
+        if (string.IsNullOrEmpty(msg))
+        {
+            comboTxt.gameObject.SafeSetActive(false);
+        }
+        else
+        {
+            comboTxt.gameObject.SafeSetActive(true);
+            comboTxt.SafeSetText(msg);
+
+            comboTxt.transform.DOScale(Vector3.one, 0f);
+            comboTxt.transform.DOPunchScale(Vector3.one * 1.05f, 0.2f);
+
+            UtilityInvoker.Invoke(this, () =>
+            {
+                comboTxt.gameObject.SafeSetActive(false);
+            }, 1f, "combo");
+        }
+    }
+
+    public void UpdateScore(string msg)
+    {
+        scoreTxt.gameObject.SafeSetActive(true);
+        scoreTxt.SafeSetText(msg);
+        scoreTxt.transform.DOScale(Vector3.one, 0f);
+        scoreTxt.transform.DOPunchScale(Vector3.one * 1.15f, 0.2f);
     }
 
     private void OnClickBtn(Button btn)

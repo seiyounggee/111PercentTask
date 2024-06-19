@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &419004364505320042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8210329953927885595}
+  - component: {fileID: 5268799615530804422}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8210329953927885595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419004364505320042}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 500, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6418822007228643686}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &5268799615530804422
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419004364505320042}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -2
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 35bf384e005f69c4c8d2ac6bd255ebc9, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1834403127194402994
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +198,52 @@ MonoBehaviour:
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
+--- !u!1 &2383019221590341605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6418822007228643686}
+  - component: {fileID: 4686603309029036539}
+  m_Layer: 0
+  m_Name: RenderTextureManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6418822007228643686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383019221590341605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8210329953927885595}
+  m_Father: {fileID: 8722823758404485143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4686603309029036539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383019221590341605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328bbe4fe5de96f459c54ae28288e4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderCam: {fileID: 5268799615530804422}
 --- !u!1 &3767497647484758361
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +381,7 @@ MonoBehaviour:
   lastRoundIndex: -1
   currentEnemy: {fileID: 0}
   CurrentInGameState: 0
+  CurrentGameEndType: 0
   mainCam: {fileID: 0}
   virtualCam: {fileID: 0}
   pooledObjList: []
@@ -292,6 +422,7 @@ Transform:
   - {fileID: 6377300497882700266}
   - {fileID: 4334353985469297032}
   - {fileID: 6302790367109521310}
+  - {fileID: 6418822007228643686}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8722823758404485142
@@ -443,6 +574,11 @@ MonoBehaviour:
   EnemyPrefabList:
   - {fileID: 9163557717756197900, guid: d14541cc84212014e878f770e558396e, type: 3}
   - {fileID: 9015501514399004225, guid: 22195ce9a3798f64aa022995e5e954ff, type: 3}
+  - {fileID: 6386125166707851902, guid: 6b46a5deda3fb2f4585ce6fc4b6dd973, type: 3}
+  - {fileID: 2751730022715540043, guid: 1497c33df2c3a1c44b8aeaedf178bf6d, type: 3}
+  - {fileID: 1735216539874563682, guid: 68d5d73c5eba92b4bb90d403988d4b4b, type: 3}
+  - {fileID: 2063732767167654409, guid: 9633181e5c22b9f4b90580a32685d80f, type: 3}
+  - {fileID: 3763504834126237696, guid: 14b37f7efdae27d4ca6dd3b5a4a21e2b, type: 3}
   PlayerSkinPrefabList:
   - {fileID: 1554878986191708345, guid: faba1841ad748e544a9fdb44ce1f1e87, type: 3}
   - {fileID: 5094706579049366427, guid: 0137f67914305c7488afe7e11dedb971, type: 3}
@@ -477,6 +613,13 @@ MonoBehaviour:
   - {fileID: 3032579310609043773, guid: 54b585fd65e14ac4c80e9bfc538a6e70, type: 3}
   - {fileID: 3913827199750386944, guid: 8242be83bde87d5488a003521ba27e72, type: 3}
   - {fileID: 4930170251368876905, guid: 613c3fcaaeb69bf4db111d6588dd0ef6, type: 3}
+  MapPrefabList:
+  - {fileID: 1629449569671762998, guid: 03bd701e975b13944a1cc4712fbe408e, type: 3}
+  - {fileID: 5605092888657351819, guid: 2c656ead431a18a4982622f7bdaa437b, type: 3}
+  - {fileID: 2954156142170829880, guid: 10c2729952f8552419ae96346429e818, type: 3}
+  - {fileID: 6034568553993751430, guid: dfb4e2d2b86a04847b3427fa18f8ff01, type: 3}
+  - {fileID: 5679898174391191382, guid: 282673ba283d8f845b4672dce6b5f3f6, type: 3}
+  - {fileID: 5994248796617742694, guid: 6fb42309bf9f8c245960ce23fb2c939d, type: 3}
   Effect_MegaExplosionYellow: {fileID: 8205834649398507972, guid: 0bdddd00e5cfe2b4cb61977c4b3acaa5, type: 3}
   Effect_ShadowExplosion2: {fileID: 2236829256048216604, guid: d2e9a5f1c1bc00f4dbfb524eb8cf86d6, type: 3}
   Effect_Hit: {fileID: 2506224434292035710, guid: c0acc65ec3686ca409d5af0f3706f01f, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6699690466893865268}
   - component: {fileID: 6766289419377416216}
   - component: {fileID: 2713449564641908608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SF_Wep_GreatAxe_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

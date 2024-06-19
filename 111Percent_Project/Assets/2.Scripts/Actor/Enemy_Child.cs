@@ -33,6 +33,10 @@ public class Enemy_Child : MonoBehaviour
 
         if (meshRenderer != null)
             meshMaterial = meshRenderer.material;
+
+
+        this.gameObject.layer = UnityEngine.LayerMask.NameToLayer(CommonDefine.LayerName_Enemy);
+        gameObject.tag = CommonDefine.TAG_Enemy;
     }
 
 
@@ -91,7 +95,11 @@ public class Enemy_Child : MonoBehaviour
             var pos = this.transform.position;
             pos.z = 3f;
             InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_GibletExplodeStone, pos, Quaternion.identity);
+
+            InGameManager.Instance.AddScore(1000);
         }
+        else
+            InGameManager.Instance.AddScore(100);
 
         if (meshMaterial != null)
         {

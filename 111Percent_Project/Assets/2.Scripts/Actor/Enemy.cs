@@ -31,6 +31,9 @@ public class Enemy : Agent
             EnemyChildList[i].PlayerCollision += PlayerCollision;
             EnemyChildList[i].PlayerDefense += PlayerDefense;
         }
+
+        this.gameObject.layer = UnityEngine.LayerMask.NameToLayer(CommonDefine.LayerName_Enemy);
+        gameObject.tag = CommonDefine.TAG_Enemy;
     }
 
     private void FixedUpdate()

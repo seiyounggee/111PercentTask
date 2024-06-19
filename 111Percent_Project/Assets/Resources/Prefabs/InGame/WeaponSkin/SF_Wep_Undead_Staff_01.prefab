@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1496156958465280034}
   - component: {fileID: 1605183539086371857}
   - component: {fileID: 1807731124782620345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SF_Wep_Undead_Staff_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

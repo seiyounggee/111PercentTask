@@ -12,7 +12,7 @@ public class Player : Agent
     private Transform rightHand = null;
     private Transform leftHand = null;
 
-    public float speed = 10f;
+    private float speed = 10f;
     [ReadOnly] public bool isGrounded = false;
 
     private Vector3 jumpUpVelocity = Vector3.zero;
@@ -38,6 +38,11 @@ public class Player : Agent
     [ReadOnly] public int maxHealth = 3;
 
     [ReadOnly] public bool isDie = false;
+
+    private int currentCombo = 0;
+
+    public enum Type { None, IngamePlayer, OutgamePlayer}
+    public Type CurrentType { get; set; }
 
     private void Awake()
     {
@@ -68,10 +73,12 @@ public class Player : Agent
         defenseTrigger.OnTriggerExitAction -= OnTriggerExitAction_Defense;
     }
 
-    public void Setup()
+    public void Setup(Type type)
     {
         Clear();
-        SetSkin();
+
+        CurrentType = type;
+        SetSkin(DataManager.Instance.GetSavedSkinPrefab());
     }
 
     private void Clear()
@@ -83,13 +90,27 @@ public class Player : Agent
         currHealth = maxHealth;
 
         isDie = false;
+
+        currentCombo = 0;
     }
 
-    private void SetSkin()
+    public void SetSkin(GameObject skin = null)
     {
         var list = PrefabManager.Instance.PlayerSkinPrefabList;
-        var randomSkin = list[UnityEngine.Random.Range(0, list.Count)];
-        var go = GameObject.Instantiate(randomSkin, Vector3.zero, Quaternion.identity);
+
+        GameObject prefab = null;
+        var skinIndex = 0;
+        if (skin == null)
+        {
+            skinIndex = UnityEngine.Random.Range(0, list.Count);
+            prefab = list[skinIndex];
+        }
+        else
+        {
+            prefab = skin;
+        }
+
+        var go = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
         go.transform.SetParent(this.transform);
         anim = go.GetComponent<Animator>();
 
@@ -176,31 +197,39 @@ public class Player : Agent
     {
         if (anim != null)
         {
-            if (isDie == false)
+            if (CurrentType == Type.IngamePlayer)
             {
-                if (isGrounded)
+                if (isDie == false)
                 {
-                    anim.SetBool(ANIM_STATE_IDLE, true);
-                    anim.SetBool(ANIM_STATE_JUMPING, false);
+                    if (isGrounded)
+                    {
+                        anim.SetBool(ANIM_STATE_IDLE, true);
+                        anim.SetBool(ANIM_STATE_JUMPING, false);
+                    }
+                    else
+                    {
+                        anim.SetBool(ANIM_STATE_IDLE, false);
+
+                        if (IsAnimationPlaying(ANIM_CLIP_ATTACK_NAME, ANIM_LAYER_OVERRIDE) || IsAnimationPlaying(ANIM_CLIP_DEFENCE_NAME, ANIM_LAYER_OVERRIDE))
+                        {
+                            anim.SetBool(ANIM_STATE_JUMPING, false);
+                            anim.SetBool(ANIM_STATE_IDLE, true);
+                        }
+                        else
+                        {
+                            anim.SetBool(ANIM_STATE_JUMPING, true);
+                        }
+                    }
                 }
                 else
                 {
                     anim.SetBool(ANIM_STATE_IDLE, false);
-
-                    if (IsAnimationPlaying(ANIM_CLIP_ATTACK_NAME, ANIM_LAYER_OVERRIDE) || IsAnimationPlaying(ANIM_CLIP_DEFENCE_NAME, ANIM_LAYER_OVERRIDE))
-                    {
-                        anim.SetBool(ANIM_STATE_JUMPING, false);
-                        anim.SetBool(ANIM_STATE_IDLE, true);
-                    }
-                    else
-                    {
-                        anim.SetBool(ANIM_STATE_JUMPING, true);
-                    }
+                    anim.SetBool(ANIM_STATE_JUMPING, false);
                 }
             }
-            else
+            else if (CurrentType == Type.OutgamePlayer)
             {
-                anim.SetBool(ANIM_STATE_IDLE, false);
+                anim.SetBool(ANIM_STATE_IDLE, true);
                 anim.SetBool(ANIM_STATE_JUMPING, false);
             }
         }
@@ -208,29 +237,33 @@ public class Player : Agent
 
     private void FixedUpdate()
     {
-        if (jumpUpVelocity.y > 0)
+        if (CurrentType == Type.IngamePlayer)
         {
-            this.transform.position += Vector3.up * Time.fixedDeltaTime * jumpUpVelocity.y;
 
-            jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
-            if (jumpUpVelocity.y <= 0)
-            { 
-                jumpUpVelocity.y = 0;
+            if (jumpUpVelocity.y > 0)
+            {
+                this.transform.position += Vector3.up * Time.fixedDeltaTime * jumpUpVelocity.y;
+
+                jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+                if (jumpUpVelocity.y <= 0)
+                {
+                    jumpUpVelocity.y = 0;
+                }
             }
+
+            if (isGrounded == false && jumpUpVelocity.y <= 0)
+            {
+                this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
+                fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+
+                //바닥 뚫고 못가게...
+                if (this.transform.position.y <= 0f)
+                    transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+            }
+
+            if (defenseInputCooltimeCounter > 0)
+                defenseInputCooltimeCounter -= Time.fixedDeltaTime;
         }
-
-        if (isGrounded == false && jumpUpVelocity.y <= 0)
-        {
-            this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
-            fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
-
-            //바닥 뚫고 못가게...
-            if (this.transform.position.y <= 0f)
-                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-        }
-
-        if (defenseInputCooltimeCounter > 0)
-            defenseInputCooltimeCounter -= Time.fixedDeltaTime;
     }
 
     public void GetHit()
@@ -247,6 +280,9 @@ public class Player : Agent
             currHealth = 0;
             SetDie();
         }
+
+        currentCombo = 0;
+        PrefabManager.Instance.UI_InGame.UpdateCombo(string.Empty);
 
         PrefabManager.Instance.UI_InGame.UpdateHealthObj();
         PrefabManager.Instance.UI_InGame.ActivateHitUI();
@@ -290,6 +326,9 @@ public class Player : Agent
                 pos.z = 3f;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_Hit, pos, Quaternion.identity);
                 InGameManager.Instance.ShakeCamera(5f, 0.2f);
+
+                ++currentCombo;
+                PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + currentCombo.ToString());
             }
         }
     }
@@ -309,11 +348,21 @@ public class Player : Agent
                 //Debug.Log("Defense Success");
                 enemyChild.GetBlocked();
 
+                //올라가고 있는 경우 였으면 아래로 밀어주자(?)
+                if (jumpUpVelocity.y > 0)
+                {
+                    jumpUpVelocity = Vector3.zero;
+                    fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 20f;
+                }
+
                 defenseInputCooltimeCounter = defenseInputCooltime / 2f; //성공한 경우 시간 단축
 
                 Vector3 pos = other.ClosestPoint(transform.position);
                 pos.z = 3f;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_KaPow, pos, Quaternion.identity);
+
+                ++currentCombo;
+                PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + currentCombo.ToString());
             }
         }
     }
@@ -347,20 +396,23 @@ public class Player : Agent
 #if UNITY_EDITOR
     private void LateUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+        if (CurrentType == Type.IngamePlayer)
         {
-            Attack();
-        }
+            if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+            {
+                Attack();
+            }
 
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
-        {
-            if (isGrounded && Mathf.Approximately(jumpUpVelocity.y, 0f))
-                Jump();
-        }
+            if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
+            {
+                if (isGrounded && Mathf.Approximately(jumpUpVelocity.y, 0f))
+                    Jump();
+            }
 
-        if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
-        {
-            Defense();
+            if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
+            {
+                Defense();
+            }
         }
     }
 #endif

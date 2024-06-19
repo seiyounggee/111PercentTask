@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5051511608311166911}
   - component: {fileID: 5313594450098482041}
   - component: {fileID: 8938307614200132763}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SF_Wep_Goblin_Staff_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

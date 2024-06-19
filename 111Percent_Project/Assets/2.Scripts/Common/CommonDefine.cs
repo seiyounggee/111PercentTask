@@ -32,6 +32,8 @@ public class CommonDefine
     //Layer Name
     public const string LayerName_Default = "Default";
     public const string LayerName_Hidden = "Hidden";
+    public const string LayerName_Player = "Player";
+    public const string LayerName_Enemy = "Enemy";
 
 
     public enum Phase

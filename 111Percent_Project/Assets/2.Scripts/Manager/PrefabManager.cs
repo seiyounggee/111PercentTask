@@ -101,6 +101,8 @@ public class PrefabManager : MonoSingleton<PrefabManager>
 
     [SerializeField] public List<GameObject> WeaponSkinPrefabList = new List<GameObject>();
 
+    [SerializeField] public List<GameObject> MapPrefabList = new List<GameObject>();
+
     #region Effect
 
     public GameObject Effect_MegaExplosionYellow = null;

@@ -14,6 +14,8 @@ public class OutGameManager : MonoSingleton<OutGameManager>
         UIManager.Instance.HideGrouped_Ingame();
 
         var outGameUI = PrefabManager.Instance.UI_OutGame;
-        outGameUI.gameObject.SafeSetActive(true);
+        UIManager.Instance.ShowUI(outGameUI);
+
+        RenderTextureManager.Instance.ActivateRenderTexture_Player();
     }
 }

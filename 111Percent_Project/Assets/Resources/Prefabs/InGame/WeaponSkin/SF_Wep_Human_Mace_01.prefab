@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4974114492935355824}
   - component: {fileID: 8795182573970043254}
   - component: {fileID: 4114269279514758578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SF_Wep_Human_Mace_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

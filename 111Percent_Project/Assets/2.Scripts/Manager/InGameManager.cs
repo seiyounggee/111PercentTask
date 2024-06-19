@@ -16,6 +16,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     public CommonDefine.InGameState CurrentInGameState = CommonDefine.InGameState.None;
     public CommonDefine.GameEndType CurrentGameEndType = CommonDefine.GameEndType.None;
 
+    public long GameScore { get; set; } = 0;
+
     public void StartInGame()
     {
         UtilityCoroutine.StartCoroutine(ref gameRoutine, GameRoutine(), this);
@@ -28,6 +30,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
         SetGameState(CommonDefine.InGameState.Waiting);
         SetupInGameUI();
+        SetMap();
         SetPlayer();
         SetCamera();
         //SetInput();
@@ -47,6 +50,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     {
         CurrentInGameState = CommonDefine.InGameState.None;
         CurrentGameEndType = CommonDefine.GameEndType.None;
+
+        GameScore = 0;
 
         currentRoundIndex = -1;
         lastRoundIndex = -1;
@@ -79,7 +84,6 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     private void SetupInGameUI_Result()
     {
         var inGameUI = PrefabManager.Instance.UI_InGame;
-        UIManager.Instance.ShowUI(inGameUI);
         switch (CurrentGameEndType)
         {
             case CommonDefine.GameEndType.GameOver:
@@ -96,6 +100,14 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         }
     }
 
+    private void SetMap()
+    {
+        var list = PrefabManager.Instance.MapPrefabList;
+        var randomMap = list[UnityEngine.Random.Range(0, list.Count)];
+        var go = GameObject.Instantiate(randomMap);
+        go.SafeSetActive(true);
+    }
+
     private void SetPlayer()
     {
         var go = GameObject.Instantiate(PrefabManager.Instance.PlayerPrefab, Vector3.zero, Quaternion.identity);
@@ -103,7 +115,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         if (_player != null)
         {
             player = _player;
-            player.Setup();
+            player.Setup(Player.Type.IngamePlayer);
         }
     }
 
@@ -190,6 +202,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
                     break;
                 }
 
+                yield return new WaitForSeconds(2f); //2초후에 생성해주자
+
                 //다음꺼 보여주자
                 ++currentRoundIndex;
                 currentEnemy = enemyList[currentRoundIndex];
@@ -206,5 +220,15 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 #if UNITY_EDITOR
         Debug.Log("<color=cyan>EndGame()</color>");
 #endif
+    }
+
+    public void AddScore(int score)
+    {
+        if (GameScore + score < long.MaxValue)
+        {
+            GameScore += score;
+
+            PrefabManager.Instance.UI_InGame.UpdateScore(GameScore.ToString());
+        }
     }
 }
