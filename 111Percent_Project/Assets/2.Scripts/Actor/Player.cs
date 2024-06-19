@@ -213,7 +213,7 @@ public class Player : Agent
                 enemyChild.GetHit(1);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
-                var randomX = UnityEngine.Random.Range(-5f, 5f);
+                var randomX = UnityEngine.Random.Range(-3f, 3f);
                 pos.x += randomX;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_Hit, pos, Quaternion.identity);
             }
