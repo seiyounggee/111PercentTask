@@ -216,6 +216,29 @@ public class PrefabManager : MonoSingleton<PrefabManager>
 
     private UI_InGame ui_InGame = null;
 
+    public UI_SelectAbility UI_SelectAbility
+    {
+        get
+        {
+            if (ui_SelectAbility == null)
+            {
+                GameObject pObj = InstantiateUIPrefab("Prefabs/UI/UI_SelectAbility", ui_parent, Vector3.zero);
+                if (pObj != null)
+                {
+                    ui_SelectAbility = pObj.GetComponent<UI_SelectAbility>();
+                    if (ui_SelectAbility == null)
+                        Debug.LogError("No ui_SelectAbility Script Attached!");
+                }
+                else
+                    Debug.LogError("Not Found ui_SelectAbility");
+            }
+
+            return ui_SelectAbility;
+        }
+    }
+
+    private UI_SelectAbility ui_SelectAbility = null;
+
     public UI_Common UI_Common
     {
         get

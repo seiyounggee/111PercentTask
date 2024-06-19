@@ -20,6 +20,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         //Ingame UI
         UI_InGame,
+        UI_SelectAbility,
 
     }
 
@@ -104,6 +105,9 @@ public class UIManager : MonoSingleton<UIManager>
                 break;
             case UIType.UI_InGame:
                 ui = PrefabManager.Instance.UI_InGame;
+                break;
+            case UIType.UI_SelectAbility:
+                ui = PrefabManager.Instance.UI_SelectAbility;
                 break;
             case UIType.UI_CommonPanel:
                 ui = PrefabManager.Instance.UI_Common;
@@ -196,6 +200,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void HideGrouped_Ingame()
     {
         HideUI(UIType.UI_InGame);
+        HideUI(UIType.UI_SelectAbility);
     }
     #endregion
 }

@@ -202,13 +202,21 @@ public partial class InGameManager : MonoSingleton<InGameManager>
                     break;
                 }
 
-                yield return new WaitForSeconds(2f); //2초후에 생성해주자
+                yield return new WaitForSeconds(0.5f); //0.5초후에 스킬 선택창 보여주자
+
+                if (currentRoundIndex % 3 == 1) //3번에 1번씩 보여주자....
+                {
+                    var selectUI = PrefabManager.Instance.UI_SelectAbility;
+                    selectUI.Setup();
+                    UIManager.Instance.ShowUI(selectUI);
+                }
+
+                yield return new WaitForSeconds(1f); //2초후에 생성해주자
 
                 //다음꺼 보여주자
                 ++currentRoundIndex;
                 currentEnemy = enemyList[currentRoundIndex];
                 currentEnemy.Show();
-
             }
 
             yield return null;

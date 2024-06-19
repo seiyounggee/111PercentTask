@@ -61,4 +61,12 @@ public class CommonDefine
         GameClear,
     }
 
+    public enum Ability
+    { 
+        None,
+        HealHp,         //Hp회복
+        IncreaseAttack, //공격력 증가
+        IncreaseSpeed,  //점프 이동속도 증가
+        DecreaseDefenseCooltime,  //디펜 쿨타임 감소
+    }
 }
