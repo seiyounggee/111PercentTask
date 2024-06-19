@@ -8,6 +8,9 @@ public class Enemy : Agent
     [SerializeField] public List<Enemy_Child> EnemyChildList = null;
 
     public float speed = 10f;
+    public float fallDownSpeed;
+    public float jumpUpSpeed_PlayerCollision;
+    public float jumpUpSpeed_PlayerDefense;
 
     private Vector3 jumpUpVelocity = Vector3.zero;
     private Vector3 fallDownVelocity = Vector3.zero;
@@ -37,7 +40,7 @@ public class Enemy : Agent
             {
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * jumpUpVelocity.y;
 
-                jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+                jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * 10f;
                 if (jumpUpVelocity.y <= 0)
                 {
                     jumpUpVelocity.y = 0;
@@ -47,8 +50,23 @@ public class Enemy : Agent
             if (IsGrounded() == false && jumpUpVelocity.y <= 0)
             {
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
-                fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+                fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * fallDownSpeed;
             }
+        }
+    }
+
+    public void SetData(DataManager.RoundData data)
+    {
+        fallDownSpeed = data.fallDownSpeed;
+        jumpUpSpeed_PlayerCollision = data.jumpUpSpeed_PlayerCollision;
+        jumpUpSpeed_PlayerDefense = data.jumpUpSpeed_PlayerDefense;
+
+        for (int i = 0; i < EnemyChildList.Count; i++)
+        {
+            if (EnemyChildList[i] == null)
+                continue;
+
+            EnemyChildList[i].Setup(data.hp);
         }
     }
 
@@ -70,13 +88,13 @@ public class Enemy : Agent
 
     private void PlayerCollision()
     {
-        jumpUpVelocity = Vector3.up * 3f;
+        jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerCollision;
         fallDownVelocity = Vector3.zero;
     }
 
     private void PlayerDefense()
     {
-        jumpUpVelocity = Vector3.up * 10f;
+        jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerDefense;
         fallDownVelocity = Vector3.zero;
     }
 

@@ -44,4 +44,12 @@ public class CommonDefine
         InGameResult
     }
 
+    public enum InGameState
+    { 
+        None,
+        Waiting,
+        Play,
+        End
+    }
+
 }

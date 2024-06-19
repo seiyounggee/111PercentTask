@@ -33,14 +33,8 @@ public class Enemy_Child : MonoBehaviour
 
         if (meshRenderer != null)
             meshMaterial = meshRenderer.material;
-
-        Setup(); //temp....
     }
 
-    public void Setup()
-    {
-        currHealth = maxHealth;
-    }
 
     private void OnEnable()
     {
@@ -54,11 +48,18 @@ public class Enemy_Child : MonoBehaviour
         bodyTrigger.OnTriggerExitAction -= OnTriggerExitAction_Body;
     }
 
+    public void Setup(int hp)
+    {
+        maxHealth = hp;
+        currHealth = maxHealth;
+    }
+
     public void SetIndexNumber(int myIndex, int lastIndex)
     {
         indexNumber = myIndex;
         lastIndexNumber = lastIndex;
     }
+
 
     private void Deactivate()
     {

@@ -13,6 +13,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     private List<Enemy> enemyList = new List<Enemy>();
     public Enemy currentEnemy = null;
 
+    public CommonDefine.InGameState CurrentInGameState = CommonDefine.InGameState.None;
+
     public void StartInGame()
     {
         UtilityCoroutine.StartCoroutine(ref gameRoutine, GameRoutine(), this);
@@ -23,15 +25,17 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     {
         Clear();
 
+        SetGameState(CommonDefine.InGameState.Waiting);
         SetupInGameUI();
-
         SetPlayer();
         SetCamera();
         //SetInput();
         //SetPoolGameObjects();
 
+        SetGameState(CommonDefine.InGameState.Play);
         yield return StartCoroutine(EnemyRound());
 
+        SetGameState(CommonDefine.InGameState.End);
         EndGame();
 
         yield break;
@@ -39,6 +43,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
     private void Clear()
     {
+        CurrentInGameState = CommonDefine.InGameState.None;
+
         currentRoundIndex = -1;
         lastRoundIndex = -1;
 
@@ -77,6 +83,15 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         }
     }
 
+    private void SetGameState(CommonDefine.InGameState state)
+    {
+        CurrentInGameState = state;
+
+#if UNITY_EDITOR
+        Debug.Log("<color=white>InGameState >>> " + CurrentInGameState + "</color>");
+#endif
+    }
+
     private IEnumerator EnemyRound()
     {
         var roundList = DataManager.Instance.RoundDataList;
@@ -102,7 +117,6 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         //만들어주자...
         for (int i = 0; i < roundList.Count; i++)
         {
-            Debug.Log(roundList[i].enemyPrefabName);
             var prefab = prefabList.Find(x => x.gameObject.name.Equals(roundList[i].enemyPrefabName));
             if (prefab != null)
             {
@@ -111,6 +125,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
                 if (enemy != null)
                 {
                     enemy.Hide();
+                    enemy.SetData(roundList[i]);
                     enemyList.Add(enemy);
                 }
             }
