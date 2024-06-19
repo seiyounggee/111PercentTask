@@ -28,6 +28,9 @@ public partial class InGameManager
         Effect_Crack,
         Effect_SwordHitRedCritical,
         Effect_ConfettiBlastRainbow,
+        Effect_ExplosionNovaFire,
+        Effect_GibletExplodeStone,
+        Effect_SwordSlashThickRed,
     }
 
     private const int INITIAL_POOL_NUMBER = 10;
@@ -52,6 +55,9 @@ public partial class InGameManager
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_Crack, PooledType.Effect_Crack);
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_SwordHitRedCritical, PooledType.Effect_SwordHitRedCritical);
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_ConfettiBlastRainbow, PooledType.Effect_ConfettiBlastRainbow, 1);
+        PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_ExplosionNovaFire, PooledType.Effect_ExplosionNovaFire);
+        PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_GibletExplodeStone, PooledType.Effect_GibletExplodeStone);
+        PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_SwordSlashThickRed, PooledType.Effect_SwordSlashThickRed);
               
     }
 
@@ -172,6 +178,15 @@ public partial class InGameManager
                                 break;
                             case PooledType.Effect_ConfettiBlastRainbow:
                                 PoolObj(true, PrefabManager.Instance.Effect_ConfettiBlastRainbow, type);
+                                break;
+                            case PooledType.Effect_ExplosionNovaFire:
+                                PoolObj(true, PrefabManager.Instance.Effect_ExplosionNovaFire, type);
+                                break;
+                            case PooledType.Effect_GibletExplodeStone:
+                                PoolObj(true, PrefabManager.Instance.Effect_GibletExplodeStone, type);
+                                break;
+                            case PooledType.Effect_SwordSlashThickRed:
+                                PoolObj(true, PrefabManager.Instance.Effect_SwordSlashThickRed, type);
                                 break;
                             default:
                                 break;

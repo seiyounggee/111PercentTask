@@ -69,6 +69,9 @@ public class Enemy_Child : MonoBehaviour
 
     public void GetHit(int dmg =1)
     {
+        if (isDeactivated == true)
+            return;
+
         if (indexNumber < lastIndexNumber)
         {
             var formerIndexNumber = indexNumber + 1;
@@ -84,6 +87,10 @@ public class Enemy_Child : MonoBehaviour
         {
             currHealth = 0;
             Deactivate();
+
+            var pos = this.transform.position;
+            pos.z = 3f;
+            InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_GibletExplodeStone, pos, Quaternion.identity);
         }
 
         if (meshMaterial != null)

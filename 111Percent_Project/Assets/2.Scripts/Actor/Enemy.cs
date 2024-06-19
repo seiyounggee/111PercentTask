@@ -59,7 +59,7 @@ public class Enemy : Agent
                     //rigidbody높이가 1.5정도 
                     var currentPlayerY = InGameManager.Instance.player.transform.position.y + 1.5f;
                     var currentEnemyChild = CurrentEnemyChild();
-                    if (currentEnemyChild != null)
+                    if (currentEnemyChild != null && InGameManager.Instance.player.isDie == false)
                     {
                         if (currentEnemyChild.transform.position.y <= currentPlayerY)
                         {
@@ -104,12 +104,33 @@ public class Enemy : Agent
 
     private void PlayerCollision()
     {
+        var player = InGameManager.Instance.player;
+        if (player != null)
+        {
+            if (player.isGrounded && player.IsDefenceActive() == false)
+            {
+                player.GetHit();
+            }
+
+            //플레이어가 죽었으면 충돌 상승x
+            if (player.isDie)
+                return;
+        }
+
         jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerCollision;
         fallDownVelocity = Vector3.zero;
     }
 
     private void PlayerDefense()
     {
+        var player = InGameManager.Instance.player;
+        if (player != null)
+        {
+            //플레이어가 죽었으면 충돌x
+            if (player.isDie)
+                return;
+        }
+
         jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerDefense;
         fallDownVelocity = Vector3.zero;
     }

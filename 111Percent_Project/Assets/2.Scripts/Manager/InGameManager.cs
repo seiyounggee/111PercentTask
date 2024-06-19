@@ -14,6 +14,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     public Enemy currentEnemy = null;
 
     public CommonDefine.InGameState CurrentInGameState = CommonDefine.InGameState.None;
+    public CommonDefine.GameEndType CurrentGameEndType = CommonDefine.GameEndType.None;
 
     public void StartInGame()
     {
@@ -35,6 +36,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         SetGameState(CommonDefine.InGameState.Play);
         yield return StartCoroutine(EnemyRound());
 
+        SetupInGameUI_Result();
         SetGameState(CommonDefine.InGameState.End);
         EndGame();
 
@@ -44,6 +46,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     private void Clear()
     {
         CurrentInGameState = CommonDefine.InGameState.None;
+        CurrentGameEndType = CommonDefine.GameEndType.None;
 
         currentRoundIndex = -1;
         lastRoundIndex = -1;
@@ -58,7 +61,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         {
             foreach (var i in enemyList)
             {
-                Destroy(i.gameObject);
+                if (i != null)
+                    Destroy(i.gameObject);
             }
             enemyList.Clear();
         }
@@ -69,7 +73,27 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         UIManager.Instance.HideGrouped_Outgame();
 
         var inGameUI = PrefabManager.Instance.UI_InGame;
-        inGameUI.gameObject.SafeSetActive(true);
+        UIManager.Instance.ShowUI(inGameUI);
+    }
+
+    private void SetupInGameUI_Result()
+    {
+        var inGameUI = PrefabManager.Instance.UI_InGame;
+        UIManager.Instance.ShowUI(inGameUI);
+        switch (CurrentGameEndType)
+        {
+            case CommonDefine.GameEndType.GameOver:
+                {
+                    inGameUI.ActivateGameOver();
+                }
+                break;
+
+            case CommonDefine.GameEndType.GameClear:
+                {
+                    inGameUI.ActivateGameClear();
+                }
+                break;
+        }
     }
 
     private void SetPlayer()
@@ -147,6 +171,14 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
         while (true)
         {
+            //내가 죽은 경우 GameOver
+            if (player != null && player.isDie)
+            {
+                CurrentGameEndType = CommonDefine.GameEndType.GameOver;
+                break;
+            }
+
+            //적이 죽은 경우...
             if (currentEnemy.IsDead())
             {
                 currentEnemy.Hide();
@@ -154,6 +186,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
                 if (currentRoundIndex == lastRoundIndex)
                 {
                     //마지막 놈이 죽은 경우 Loop 빠져나가자
+                    CurrentGameEndType = CommonDefine.GameEndType.GameClear;
                     break;
                 }
 

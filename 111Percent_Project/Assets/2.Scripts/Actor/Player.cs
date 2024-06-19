@@ -23,6 +23,7 @@ public class Player : Agent
     private const string ANIM_STATE_JUMPING = "isJump";
     private const string ANIM_STATE_ATTACK = "isAttack";
     private const string ANIM_STATE_DEFENSE = "isDefense";
+    private const string ANIM_STATE_DIE = "isDie";
 
     private const string ANIM_CLIP_ATTACK_NAME = "Attack";
     private const string ANIM_CLIP_DEFENCE_NAME = "Defense";
@@ -32,6 +33,11 @@ public class Player : Agent
 
     private float defenseInputCooltimeCounter = 0f;
     private float defenseInputCooltime = 3f;
+
+    [ReadOnly] public int currHealth = 3;
+    [ReadOnly] public int maxHealth = 3;
+
+    [ReadOnly] public bool isDie = false;
 
     private void Awake()
     {
@@ -72,6 +78,11 @@ public class Player : Agent
     {
         attackTrigger.SafeSetActive(false);
         defenseTrigger.SafeSetActive(false);
+
+        maxHealth = 3;
+        currHealth = maxHealth;
+
+        isDie = false;
     }
 
     private void SetSkin()
@@ -103,12 +114,18 @@ public class Player : Agent
 
     public void Jump()
     {
+        if (isDie)
+            return; //이미 죽었으면... 
+
         jumpUpVelocity = Vector3.up * 25f;
         fallDownVelocity = Vector3.zero;
     }
 
     public void Attack()
     {
+        if (isDie)
+            return; //이미 죽었으면... 
+
         anim.SetTrigger(ANIM_STATE_ATTACK);
         attackTrigger.SafeSetActive(false);
         attackTrigger.SafeSetActive(true);
@@ -117,10 +134,18 @@ public class Player : Agent
         {
             attackTrigger.SafeSetActive(false);
         }, 0.5f, "attack");
+
+        var pos = this.transform.position + Vector3.up * 2f;
+        pos.z = 3f;
+        var rot = Quaternion.Euler(180f, 360f, 30f);
+        InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_SwordSlashThickRed, pos, rot);
     }
 
     public void Defense()
     {
+        if (isDie)
+            return; //이미 죽었으면... 
+
         if (defenseInputCooltimeCounter > 0f)
         {
             //쿨타임중...
@@ -140,28 +165,43 @@ public class Player : Agent
         }, 0.5f, "defense");
     }
 
+    public void SetDie()
+    {
+        isDie = true;
+
+        anim.SetTrigger(ANIM_STATE_DIE);
+    }
+
     private void Update()
     {
         if (anim != null)
         {
-            if (isGrounded)
+            if (isDie == false)
             {
-                anim.SetBool(ANIM_STATE_IDLE, true);
-                anim.SetBool(ANIM_STATE_JUMPING, false);
+                if (isGrounded)
+                {
+                    anim.SetBool(ANIM_STATE_IDLE, true);
+                    anim.SetBool(ANIM_STATE_JUMPING, false);
+                }
+                else
+                {
+                    anim.SetBool(ANIM_STATE_IDLE, false);
+
+                    if (IsAnimationPlaying(ANIM_CLIP_ATTACK_NAME, ANIM_LAYER_OVERRIDE) || IsAnimationPlaying(ANIM_CLIP_DEFENCE_NAME, ANIM_LAYER_OVERRIDE))
+                    {
+                        anim.SetBool(ANIM_STATE_JUMPING, false);
+                        anim.SetBool(ANIM_STATE_IDLE, true);
+                    }
+                    else
+                    {
+                        anim.SetBool(ANIM_STATE_JUMPING, true);
+                    }
+                }
             }
             else
             {
                 anim.SetBool(ANIM_STATE_IDLE, false);
-
-                if (IsAnimationPlaying(ANIM_CLIP_ATTACK_NAME, ANIM_LAYER_OVERRIDE) || IsAnimationPlaying(ANIM_CLIP_DEFENCE_NAME, ANIM_LAYER_OVERRIDE))
-                {
-                    anim.SetBool(ANIM_STATE_JUMPING, false);
-                    anim.SetBool(ANIM_STATE_IDLE, true);
-                }
-                else
-                {
-                    anim.SetBool(ANIM_STATE_JUMPING, true);
-                }
+                anim.SetBool(ANIM_STATE_JUMPING, false);
             }
         }
     }
@@ -191,6 +231,25 @@ public class Player : Agent
 
         if (defenseInputCooltimeCounter > 0)
             defenseInputCooltimeCounter -= Time.fixedDeltaTime;
+    }
+
+    public void GetHit()
+    {
+        if (isDie)
+            return; //이미 죽었으면... 
+
+        //hp 관련... 처리
+
+        --currHealth;
+
+        if (currHealth <= 0)
+        {
+            currHealth = 0;
+            SetDie();
+        }
+
+        PrefabManager.Instance.UI_InGame.UpdateHealthObj();
+        PrefabManager.Instance.UI_InGame.ActivateHitUI();
     }
 
     private void OnTriggerEnterAction_Body(Collider other)
@@ -278,6 +337,10 @@ public class Player : Agent
         return stateInfo.IsName(stateName);
     }
 
+    public bool IsDefenceActive()
+    {
+        return defenseTrigger.SafeIsActive();
+    }
 
 
 

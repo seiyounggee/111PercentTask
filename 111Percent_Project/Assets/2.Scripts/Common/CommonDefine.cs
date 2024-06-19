@@ -52,4 +52,11 @@ public class CommonDefine
         End
     }
 
+    public enum GameEndType
+    { 
+        None, 
+        GameOver,
+        GameClear,
+    }
+
 }

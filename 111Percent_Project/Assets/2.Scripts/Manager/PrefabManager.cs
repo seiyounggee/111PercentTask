@@ -110,6 +110,9 @@ public class PrefabManager : MonoSingleton<PrefabManager>
     public GameObject Effect_Crack = null;
     public GameObject Effect_SwordHitRedCritical = null;
     public GameObject Effect_ConfettiBlastRainbow = null;
+    public GameObject Effect_ExplosionNovaFire = null;
+    public GameObject Effect_GibletExplodeStone = null;
+    public GameObject Effect_SwordSlashThickRed = null;
 
     #endregion
 

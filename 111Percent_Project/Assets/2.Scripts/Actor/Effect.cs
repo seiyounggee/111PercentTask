@@ -18,9 +18,6 @@ public class Effect : MonoBehaviour
 
     public Action callback = null;
 
-    private ParticleSystem particleSyst;
-    public int renderQueue = 3100;
-
     public void OnEnable()
     {
         if (effectType == EffectType.AutoActiveFalse)

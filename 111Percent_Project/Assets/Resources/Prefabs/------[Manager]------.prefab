@@ -484,3 +484,6 @@ MonoBehaviour:
   Effect_Crack: {fileID: 3378052082045523761, guid: d154c98d31fd9b24e84fa3b61e7b5f09, type: 3}
   Effect_SwordHitRedCritical: {fileID: 2945880136696436242, guid: cbbc76158e75a6f4bb1bad50622adef1, type: 3}
   Effect_ConfettiBlastRainbow: {fileID: 2523339095094963846, guid: ed600a6dda6015f4cad381b613457b48, type: 3}
+  Effect_ExplosionNovaFire: {fileID: 5016852406723410596, guid: 8ab43bd3a285b2e4fa3a895bdbf9ba4d, type: 3}
+  Effect_GibletExplodeStone: {fileID: 7373243705534047242, guid: b9d0d21c310e1a744ba502e376395606, type: 3}
+  Effect_SwordSlashThickRed: {fileID: 6252778529602162175, guid: 865891b5f550fab469efa82c44332906, type: 3}
