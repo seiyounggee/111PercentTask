@@ -99,6 +99,7 @@ public class PrefabManager : MonoSingleton<PrefabManager>
 
     [SerializeField] public List<GameObject> PlayerSkinPrefabList = new List<GameObject>();
 
+    [SerializeField] public List<GameObject> WeaponSkinPrefabList = new List<GameObject>();
 
     #region Effect
 

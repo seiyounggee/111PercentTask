@@ -35,15 +35,7 @@ public class Player : Agent
 
     private void Awake()
     {
-        var childTrans = this.transform.GetComponentsInChildren<Transform>();
-        foreach (var i in childTrans)
-        {
-            if (i.gameObject.name.Contains("Hand_Right_jnt"))
-                rightHand = i;
 
-            if (i.gameObject.name.Contains("Left_Right_jnt"))
-                leftHand = i;
-        }
     }
 
     private void OnEnable()
@@ -88,8 +80,25 @@ public class Player : Agent
         var randomSkin = list[UnityEngine.Random.Range(0, list.Count)];
         var go = GameObject.Instantiate(randomSkin, Vector3.zero, Quaternion.identity);
         go.transform.SetParent(this.transform);
-
         anim = go.GetComponent<Animator>();
+
+        var childTrans = go.transform.GetComponentsInChildren<Transform>();
+        foreach (var i in childTrans)
+        {
+            if (i.gameObject.name.Equals("Hand_Right_jnt"))
+                rightHand = i;
+
+            if (i.gameObject.name.Equals("Left_Right_jnt"))
+                leftHand = i;
+        }
+
+        var list_weapon = PrefabManager.Instance.WeaponSkinPrefabList;
+        var randomSkin_weapon = list_weapon[UnityEngine.Random.Range(0, list_weapon.Count)];
+
+        var weapon = GameObject.Instantiate(randomSkin_weapon, Vector3.zero, Quaternion.identity);
+        weapon.transform.SetParent(rightHand);
+        weapon.transform.localPosition = new Vector3(0.08f, -0.011f, -0.4f);
+        weapon.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
     }
 
     public void Jump()
@@ -174,6 +183,10 @@ public class Player : Agent
         {
             this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
             fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+
+            //바닥 뚫고 못가게...
+            if (this.transform.position.y <= 0f)
+                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         }
 
         if (defenseInputCooltimeCounter > 0)
@@ -215,7 +228,9 @@ public class Player : Agent
                 Vector3 pos = other.ClosestPoint(transform.position);
                 var randomX = UnityEngine.Random.Range(-3f, 3f);
                 pos.x += randomX;
+                pos.z = 3f;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_Hit, pos, Quaternion.identity);
+                InGameManager.Instance.ShakeCamera(5f, 0.2f);
             }
         }
     }
@@ -238,6 +253,7 @@ public class Player : Agent
                 defenseInputCooltimeCounter = defenseInputCooltime / 2f; //성공한 경우 시간 단축
 
                 Vector3 pos = other.ClosestPoint(transform.position);
+                pos.z = 3f;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_KaPow, pos, Quaternion.identity);
             }
         }

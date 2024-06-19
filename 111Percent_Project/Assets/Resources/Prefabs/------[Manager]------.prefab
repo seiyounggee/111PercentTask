@@ -470,6 +470,13 @@ MonoBehaviour:
   - {fileID: 1161073957598026625, guid: bf36cd20f8f47fa4080bcb40e2820995, type: 3}
   - {fileID: 4997876531015523535, guid: 10db77d3b2862ca4d99418afd2d298f8, type: 3}
   - {fileID: 6243825076744418702, guid: 2a3abfd0bfbb9d54c924cff3b0e6b9c1, type: 3}
+  WeaponSkinPrefabList:
+  - {fileID: 5316243046118229741, guid: 1e00832b4c3cb044a93009edf562ed81, type: 3}
+  - {fileID: 4618211322280191599, guid: dd21fa3e4fa53ac49a02ab07de3f1624, type: 3}
+  - {fileID: 7948980435443988508, guid: d351b09380d885344a2118ea05eee193, type: 3}
+  - {fileID: 3032579310609043773, guid: 54b585fd65e14ac4c80e9bfc538a6e70, type: 3}
+  - {fileID: 3913827199750386944, guid: 8242be83bde87d5488a003521ba27e72, type: 3}
+  - {fileID: 4930170251368876905, guid: 613c3fcaaeb69bf4db111d6588dd0ef6, type: 3}
   Effect_MegaExplosionYellow: {fileID: 8205834649398507972, guid: 0bdddd00e5cfe2b4cb61977c4b3acaa5, type: 3}
   Effect_ShadowExplosion2: {fileID: 2236829256048216604, guid: d2e9a5f1c1bc00f4dbfb524eb8cf86d6, type: 3}
   Effect_Hit: {fileID: 2506224434292035710, guid: c0acc65ec3686ca409d5af0f3706f01f, type: 3}

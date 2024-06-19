@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class Enemy : Agent
 {
@@ -51,6 +52,21 @@ public class Enemy : Agent
             {
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
                 fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * fallDownSpeed;
+
+                //플레이어 밑으로 가지 않도록...!
+                if (InGameManager.Instance.player != null)
+                {
+                    //rigidbody높이가 1.5정도 
+                    var currentPlayerY = InGameManager.Instance.player.transform.position.y + 1.5f;
+                    var currentEnemyChild = CurrentEnemyChild();
+                    if (currentEnemyChild != null)
+                    {
+                        if (currentEnemyChild.transform.position.y <= currentPlayerY)
+                        {
+                            transform.position = new Vector3(transform.position.x, currentPlayerY, transform.position.z);
+                        }
+                    }
+                }
             }
         }
     }
@@ -96,6 +112,20 @@ public class Enemy : Agent
     {
         jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerDefense;
         fallDownVelocity = Vector3.zero;
+    }
+
+    private Enemy_Child CurrentEnemyChild()
+    {
+        for (int i = EnemyChildList.Count - 1; i>= 0; --i)
+        {
+            if (EnemyChildList[i] == null)
+                continue;
+
+            if (EnemyChildList[i].isDeactivated == false)
+                return EnemyChildList[i];
+        }
+
+        return null;
     }
 
     private bool IsGrounded()
