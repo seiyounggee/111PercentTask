@@ -124,7 +124,7 @@ public class Enemy : Agent
         fallDownVelocity = Vector3.zero;
     }
 
-    private void PlayerDefense()
+    private void PlayerDefense(float strength_percentage)
     {
         var player = InGameManager.Instance.player;
         if (player != null)
@@ -134,7 +134,7 @@ public class Enemy : Agent
                 return;
         }
 
-        jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerDefense;
+        jumpUpVelocity = Vector3.up * jumpUpSpeed_PlayerDefense + Vector3.up * jumpUpSpeed_PlayerDefense * strength_percentage;
         fallDownVelocity = Vector3.zero;
     }
 

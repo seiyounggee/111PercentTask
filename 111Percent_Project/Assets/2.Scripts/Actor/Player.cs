@@ -39,7 +39,7 @@ public class Player : Agent
 
     [ReadOnly] public bool isDie = false;
 
-    private int currentCombo = 0;
+    public int CurrentCombo { get; set; }
 
     public enum Type { None, IngamePlayer, OutgamePlayer}
     public Type CurrentType { get; set; }
@@ -91,7 +91,7 @@ public class Player : Agent
 
         isDie = false;
 
-        currentCombo = 0;
+        CurrentCombo = 0;
     }
 
     public void SetSkin(GameObject skin = null)
@@ -135,11 +135,14 @@ public class Player : Agent
 
     public void Jump()
     {
-        if (isDie)
+            if (isDie)
             return; //이미 죽었으면... 
 
-        jumpUpVelocity = Vector3.up * 25f;
-        fallDownVelocity = Vector3.zero;
+        if (isGrounded && Mathf.Approximately(jumpUpVelocity.y, 0f))
+        {
+            jumpUpVelocity = Vector3.up * 25f;
+            fallDownVelocity = Vector3.zero;
+        }
     }
 
     public void Attack()
@@ -167,9 +170,13 @@ public class Player : Agent
         if (isDie)
             return; //이미 죽었으면... 
 
-        if (defenseInputCooltimeCounter > 0f)
+        if (defenseTrigger.SafeIsActive())
+            return;
+
+        if (defenseInputCooltimeCounter > 0f && defenseTrigger.SafeIsActive() == false)
         {
             //쿨타임중...
+            PrefabManager.Instance.UI_InGame.ActivateMessageUI("Cooldown in progress, cannot be used");
 
             return;
         }
@@ -281,7 +288,8 @@ public class Player : Agent
             SetDie();
         }
 
-        currentCombo = 0;
+        defenseInputCooltimeCounter = 0; //맞았으면 방어 쿨타임 초기화
+        CurrentCombo = 0;
         PrefabManager.Instance.UI_InGame.UpdateCombo(string.Empty);
 
         PrefabManager.Instance.UI_InGame.UpdateHealthObj();
@@ -327,8 +335,8 @@ public class Player : Agent
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_Hit, pos, Quaternion.identity);
                 InGameManager.Instance.ShakeCamera(5f, 0.2f);
 
-                ++currentCombo;
-                PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + currentCombo.ToString());
+                ++CurrentCombo;
+                PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + CurrentCombo.ToString());
             }
         }
     }
@@ -345,14 +353,19 @@ public class Player : Agent
             var enemyChild = other.transform.GetComponent<Enemy_Child>();
             if (enemyChild != null)
             {
-                //Debug.Log("Defense Success");
-                enemyChild.GetBlocked();
+                var hitPoint = other.ClosestPoint(transform.position);
+                var dist = Mathf.Abs(transform.position.y - hitPoint.y);
+                //보통 dist 값은 2.3 ~ 4
+                var strength_percentage = (4.5f - dist) / 100f * 15f;
+                strength_percentage = Mathf.Clamp(strength_percentage, 0, 1);
+
+                enemyChild.GetBlocked(strength_percentage);
 
                 //올라가고 있는 경우 였으면 아래로 밀어주자(?)
                 if (jumpUpVelocity.y > 0)
                 {
                     jumpUpVelocity = Vector3.zero;
-                    fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 20f;
+                    fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 25f;
                 }
 
                 defenseInputCooltimeCounter = defenseInputCooltime / 2f; //성공한 경우 시간 단축
@@ -361,8 +374,8 @@ public class Player : Agent
                 pos.z = 3f;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_KaPow, pos, Quaternion.identity);
 
-                ++currentCombo;
-                PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + currentCombo.ToString());
+                ++CurrentCombo;
+                PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + CurrentCombo.ToString());
             }
         }
     }

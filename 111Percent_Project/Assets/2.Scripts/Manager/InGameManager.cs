@@ -7,10 +7,10 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 {
     [ReadOnly] public Player player = null;
 
-    [ReadOnly] public int currentRoundIndex = -1;
-    [ReadOnly] public int lastRoundIndex = -1;
+    public int CurrentRoundIndex { get; set; } = -1;
+    public int LastRoundIndex { get; set; } = -1;
 
-    private List<Enemy> enemyList = new List<Enemy>();
+    public List<Enemy> enemyList = new List<Enemy>();
     public Enemy currentEnemy = null;
 
     public CommonDefine.InGameState CurrentInGameState = CommonDefine.InGameState.None;
@@ -53,8 +53,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
         GameScore = 0;
 
-        currentRoundIndex = -1;
-        lastRoundIndex = -1;
+        CurrentRoundIndex = -1;
+        LastRoundIndex = -1;
 
         if (player != null)
         {
@@ -130,7 +130,18 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
     private IEnumerator EnemyRound()
     {
-        var roundList = DataManager.Instance.RoundDataList;
+        var stageList = DataManager.Instance.StageDataList;
+        var stageID = DataManager.Instance.GetSavedStageID();
+        var stage = stageList.Find(x => x.stageID.Equals(stageID));
+        if (stage == null)
+        {
+#if UNITY_EDITOR
+            Debug.Log("<color=red>Error...! No Stage Data Existing</color>");
+#endif
+            yield break;
+        }
+
+        var roundList = stage.RoundDataList;
         if (roundList == null || roundList.Count <= 0)
         {
 #if UNITY_EDITOR
@@ -175,11 +186,14 @@ public partial class InGameManager : MonoSingleton<InGameManager>
             yield break;
         }
 
+        var ingameUI = PrefabManager.Instance.UI_InGame;
+
         //최초 적 세팅
-        currentRoundIndex = 0;
-        currentEnemy = enemyList[currentRoundIndex];
-        lastRoundIndex = enemyList.Count - 1;
+        CurrentRoundIndex = 0;
+        currentEnemy = enemyList[CurrentRoundIndex];
+        LastRoundIndex = enemyList.Count - 1;
         currentEnemy.Show();
+        ingameUI.SetupProgressSlider();
 
         while (true)
         {
@@ -195,7 +209,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
             {
                 currentEnemy.Hide();
 
-                if (currentRoundIndex == lastRoundIndex)
+                if (CurrentRoundIndex == LastRoundIndex)
                 {
                     //마지막 놈이 죽은 경우 Loop 빠져나가자
                     CurrentGameEndType = CommonDefine.GameEndType.GameClear;
@@ -204,18 +218,19 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
                 yield return new WaitForSeconds(0.5f); //0.5초후에 스킬 선택창 보여주자
 
-                if (currentRoundIndex % 3 == 1) //3번에 1번씩 보여주자....
+                if (CurrentRoundIndex % 3 == 1) //3번에 1번씩 보여주자....
                 {
                     var selectUI = PrefabManager.Instance.UI_SelectAbility;
                     selectUI.Setup();
                     UIManager.Instance.ShowUI(selectUI);
                 }
 
-                yield return new WaitForSeconds(1f); //2초후에 생성해주자
+                ++CurrentRoundIndex;
+                ingameUI.SetupProgressSlider();
 
+                yield return new WaitForSeconds(1f); //1초후에 생성해주자
                 //다음꺼 보여주자
-                ++currentRoundIndex;
-                currentEnemy = enemyList[currentRoundIndex];
+                currentEnemy = enemyList[CurrentRoundIndex];
                 currentEnemy.Show();
             }
 
@@ -235,6 +250,11 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         if (GameScore + score < long.MaxValue)
         {
             GameScore += score;
+
+            if (player != null)
+            {
+                GameScore += player.CurrentCombo;
+            }
 
             PrefabManager.Instance.UI_InGame.UpdateScore(GameScore.ToString());
         }

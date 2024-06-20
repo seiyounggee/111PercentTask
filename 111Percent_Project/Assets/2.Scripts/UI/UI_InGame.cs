@@ -8,6 +8,8 @@ using DG.Tweening;
 
 public class UI_InGame : UIBase
 {
+    [SerializeField] UIComponent_InGameInput input;
+
     [SerializeField] TextMeshProUGUI scoreTxt;
     [SerializeField] TextMeshProUGUI comboTxt;
 
@@ -16,15 +18,43 @@ public class UI_InGame : UIBase
     [SerializeField] GameObject hitUI = null;
 
     [SerializeField] GameObject gameOverPopup = null;
+    [SerializeField] TextMeshProUGUI gameOverScoreTxt = null;
     [SerializeField] Button gameOverBtn = null;
 
     [SerializeField] GameObject gameClearPopup = null;
+    [SerializeField] TextMeshProUGUI gameClearScoreTxt = null;
     [SerializeField] Button gameClearBtn = null;
+
+    [SerializeField] Slider progressSlider = null;
+    [SerializeField] GameObject enemyIconIdicator = null;
+    private List<GameObject> enemyIconList = new List<GameObject>();
+
+    [SerializeField] TextMeshProUGUI msgUI = null;
 
     private void Awake()
     {
         gameOverBtn.SafeSetButton(OnClickBtn);
         gameClearBtn.SafeSetButton(OnClickBtn);
+
+        enemyIconIdicator.SafeSetActive(false);
+    }
+
+    internal override void OnEnable()
+    {
+        base.OnEnable();
+
+        input.pointerDownCallback += Input_OnPointerDown;
+        input.dragCallback += Input_Drag;
+        input.pointerUpCallback += Input_OnPointerUp;
+    }
+
+    internal override void OnDisable()
+    {
+        base.OnDisable();
+
+        input.pointerDownCallback -= Input_OnPointerDown;
+        input.dragCallback -= Input_Drag;
+        input.pointerUpCallback -= Input_OnPointerUp;
     }
 
     public override void Show()
@@ -45,6 +75,7 @@ public class UI_InGame : UIBase
         }
 
         hitUI.SafeSetActive(false);
+        msgUI.SafeSetActive(false);
 
         gameOverPopup.SafeSetActive(false);
         gameClearPopup.SafeSetActive(false);
@@ -67,11 +98,74 @@ public class UI_InGame : UIBase
         }
     }
 
+    public void SetupProgressSlider()
+    {
+        if (enemyIconList != null && enemyIconList.Count > 0)
+        {
+            foreach (var i in enemyIconList)
+            {
+                Destroy(i.gameObject);
+            }
+            enemyIconList.Clear();
+        }
+
+        progressSlider.maxValue = InGameManager.Instance.LastRoundIndex;
+        progressSlider.minValue = 0;
+
+        var start = progressSlider.value;
+        var end = InGameManager.Instance.CurrentRoundIndex;
+        UtilityCoroutine.StartCoroutine(ref updateProgressSlider, UpdateProgressSlider(start, end), this);
+
+        var sliderWidth = progressSlider.GetComponent<RectTransform>().rect.width;
+        var eachRoundDistX = sliderWidth / InGameManager.Instance.LastRoundIndex;
+        var startLocalPosX = -sliderWidth / 2f;
+        var count = InGameManager.Instance.LastRoundIndex;
+        if (count > 0)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var go = GameObject.Instantiate(enemyIconIdicator, progressSlider.transform);
+                var newLocalPos = go.transform.localPosition;
+                newLocalPos.x = startLocalPosX + i * eachRoundDistX;
+                go.transform.localPosition = newLocalPos;
+                go.SafeSetActive(i > 0); //Ã¹¹øÂ°²¨´Â ²ôÀÚ...
+                enemyIconList.Add(go);
+            }
+        }
+    }
+
+    private IEnumerator updateProgressSlider;
+    private IEnumerator UpdateProgressSlider(float start, float end)
+    {
+        while (true)
+        {
+            progressSlider.value += Time.deltaTime;
+
+            if (progressSlider.value >= end)
+            {
+                progressSlider.value = end;
+                break;
+            }
+
+            yield return null;
+        }
+
+        progressSlider.value = InGameManager.Instance.CurrentRoundIndex;
+    }
+
+    public void UpdateProgressSlider()
+    {
+        progressSlider.maxValue = InGameManager.Instance.LastRoundIndex;
+        progressSlider.minValue = 0;
+        progressSlider.value = InGameManager.Instance.CurrentRoundIndex;
+    }
+
     public void ActivateGameOver()
     {
         UtilityInvoker.Invoke(this, () =>
         {
             gameOverPopup.SafeSetActive(true);
+            UtilityCoroutine.StartCoroutine(ref countup, CountUp(gameOverScoreTxt), this);
         }, 2f, "gameoverPopup");
 
     }
@@ -81,7 +175,29 @@ public class UI_InGame : UIBase
         UtilityInvoker.Invoke(this, () =>
         {
             gameClearPopup.SafeSetActive(true);
+            UtilityCoroutine.StartCoroutine(ref countup, CountUp(gameClearScoreTxt), this);
         }, 2f, "gameClearPopup");
+    }
+
+    private IEnumerator countup = null;
+    private IEnumerator CountUp(TextMeshProUGUI textUI)
+    {
+        long startNumber = 0; 
+        long endNumber = InGameManager.Instance.GameScore; 
+        float duration = 2.0f;
+
+    
+        float elapsedTime = 0.0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = Mathf.Clamp01(elapsedTime / duration);
+            long currentNumber = startNumber + (long)((endNumber - startNumber) * progress);
+            textUI.SafeSetText(currentNumber.ToString());
+            yield return null;
+        }
+
+        textUI.SafeSetText(endNumber.ToString()); // Ensure the final number is set correctly
     }
 
     public void ActivateHitUI()
@@ -96,6 +212,21 @@ public class UI_InGame : UIBase
         {
             hitUI.SafeSetActive(false);
         }, 0.3f);
+    }
+
+    public void ActivateMessageUI(string msg)
+    {
+        msgUI.SafeSetText(msg);
+        msgUI.GetComponent<TextMeshProUGUI>().color = new Color32(173, 173, 173, 200);
+        msgUI.SafeSetActive(false);
+        msgUI.SafeSetActive(true);
+
+        msgUI.transform.DORestart();
+
+        UtilityInvoker.Invoke(this, () =>
+        {
+            msgUI.SafeSetActive(false);
+        }, 1f);
     }
 
     public void UpdateCombo(string msg)
@@ -136,6 +267,47 @@ public class UI_InGame : UIBase
         else if (btn == gameClearBtn) 
         {
             PhaseManager.Instance.ChangePhase(CommonDefine.Phase.OutGame);
+        }
+    }
+
+    private void Input_OnPointerDown(UIComponent_InGameInput.GestureType type, float strength)
+    {
+        var player = InGameManager.Instance.player;
+        if (player != null)
+        { 
+        
+        }
+    }
+
+    private void Input_Drag(UIComponent_InGameInput.GestureType type, float strength)
+    {
+        var player = InGameManager.Instance.player;
+        if (player != null)
+        {
+
+        }
+    }
+
+    private void Input_OnPointerUp(UIComponent_InGameInput.GestureType type, float strength, float length)
+    {
+        var player = InGameManager.Instance.player;
+        if (player != null)
+        {
+            //Debug.Log("GestureType >> " + type);
+            switch (type)
+            {
+                case UIComponent_InGameInput.GestureType.PointTouch:
+                case UIComponent_InGameInput.GestureType.SwipeLeft:
+                case UIComponent_InGameInput.GestureType.SwipeRight:
+                    player.Attack();
+                    break;
+                case UIComponent_InGameInput.GestureType.SwipeUp:
+                    player.Jump();
+                    break;
+                case UIComponent_InGameInput.GestureType.SwipeDown:
+                    player.Defense();
+                    break;
+            }
         }
     }
 }

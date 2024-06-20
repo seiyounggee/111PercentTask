@@ -18,7 +18,7 @@ public class Enemy_Child : MonoBehaviour
     [ReadOnly] public int maxHealth = 5;
 
     public Action PlayerCollision = null;
-    public Action PlayerDefense = null;
+    public Action<float> PlayerDefense = null;
 
     [ReadOnly] public int indexNumber = -1;
     [ReadOnly] public int lastIndexNumber = -1;
@@ -109,9 +109,9 @@ public class Enemy_Child : MonoBehaviour
         }
     }
 
-    public void GetBlocked()
+    public void GetBlocked(float strength_percentage)
     {
-        PlayerDefense?.Invoke();
+        PlayerDefense?.Invoke(strength_percentage);
     }
 
     private void OnTriggerEnterAction_Body(Collider other)

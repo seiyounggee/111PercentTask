@@ -10,11 +10,28 @@ public class UI_OutGame : UIBase
     [SerializeField] Button leftBtn;
     [SerializeField] Button rightBtn;
 
+    [SerializeField] TextMeshProUGUI stageTxt;
+
     private void Awake()
     {
         playBtn.SafeSetButton(OnClickBtn);
         leftBtn.SafeSetButton(OnClickBtn);
         rightBtn.SafeSetButton(OnClickBtn);
+    }
+
+    public override void Show()
+    {
+        base.Show();
+
+        SetUI();
+    }
+
+    private void SetUI()
+    {
+        var stageID = DataManager.Instance.GetSavedStageID();
+        var currentStage = DataManager.Instance.GetCurrentStageData();
+        if (currentStage != null)
+            stageTxt.SafeSetText(string.Format("STAGE {0} : {1}", currentStage.stageNumber, currentStage.stageName));
     }
 
     private void OnClickBtn(Button btn)
