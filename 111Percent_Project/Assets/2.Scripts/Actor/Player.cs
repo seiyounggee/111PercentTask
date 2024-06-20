@@ -157,6 +157,7 @@ public class Player : Agent
         if (isGrounded && Mathf.Approximately(jumpUpVelocity.y, 0f))
         {
             jumpUpVelocity = Vector3.up * 25f;
+            jumpUpVelocity += abilityBuff_IncreaseSpeed * Vector3.up * 25f;
             fallDownVelocity = Vector3.zero;
         }
     }
@@ -344,7 +345,10 @@ public class Player : Agent
             if (enemyChild != null)
             {
                 //Debug.Log("Hit Enemy!!");
-                enemyChild.GetHit(10);
+                var damage = 10;
+                damage += (int)((float)damage * abilityBuff_IncreaseAttack);
+                damage += Random.Range(0, 3);
+                enemyChild.GetHit(damage);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
                 var randomX = UnityEngine.Random.Range(-3f, 3f);
@@ -375,6 +379,7 @@ public class Player : Agent
                 var dist = Mathf.Abs(transform.position.y - hitPoint.y);
                 //보통 dist 값은 2.3 ~ 4
                 var strength_percentage = (4.5f - dist) / 100f * 15f;
+                strength_percentage += Random.Range(0f, 0.2f); //랜덤으로 버프...?
                 strength_percentage = Mathf.Clamp(strength_percentage, 0, 1);
 
                 enemyChild.GetBlocked(strength_percentage);
@@ -451,17 +456,25 @@ public class Player : Agent
                 break;
             case CommonDefine.Ability.DecreaseDefenseCooltime:
                 {
-                    abilityBuff_DecreaseDefenseCooltime += 0.25f;
+                    abilityBuff_DecreaseDefenseCooltime += 0.2f;
+
+                    defenseInputCooltime = 3 - abilityBuff_DecreaseDefenseCooltime;
+
+                    defenseInputCooltime = Mathf.Clamp(defenseInputCooltime, 2f, 3f);
                 }
                 break;
             case CommonDefine.Ability.IncreaseAttackRange:
                 {
                     abilityBuff_IncreaseAttackRange += 0.15f;
+
+                    attackTrigger.transform.localScale = ( 1 + abilityBuff_IncreaseAttackRange )* Vector3.one;
                 }
                 break;
             case CommonDefine.Ability.IncreaseDefenseRange:
                 {
                     abilityBuff_IncreaseDefenseRange += 0.1f;
+
+                    defenseTrigger.transform.localScale = (1 + abilityBuff_IncreaseAttackRange) * Vector3.one;
                 }
                 break;
         }
