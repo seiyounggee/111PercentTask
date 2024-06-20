@@ -12,8 +12,12 @@ public class UI_OutGame : UIBase
 
     [SerializeField] TextMeshProUGUI stageTxt;
 
+    [SerializeField] Transform currencyCoinTrans;
     [SerializeField] TextMeshProUGUI currencyCoinTxt;
+    [SerializeField] Transform currencyGemTrans;
     [SerializeField] TextMeshProUGUI currencyGemTxt;
+
+    public bool RegisterTween = false;
 
     private void Awake()
     {
@@ -27,6 +31,8 @@ public class UI_OutGame : UIBase
         base.Show();
 
         SetUI();
+
+        TweenCurrency();
     }
 
     private void SetUI()
@@ -91,6 +97,19 @@ public class UI_OutGame : UIBase
 
                 RenderTextureManager.Instance.ActivateRenderTexture_Player();
             }
+        }
+    }
+
+    private void TweenCurrency()
+    {
+        if (RegisterTween)
+        {
+            var uiTween = PrefabManager.Instance.UI_TweenContainer;
+            var coinTexture = PrefabManager.Instance.coinTexture;
+
+            uiTween.Tween(coinTexture, playBtn.transform, currencyCoinTrans, 0, DataManager.Instance.Coin, group_count: 5, single_count: 5);
+
+            RegisterTween = false;
         }
     }
 }

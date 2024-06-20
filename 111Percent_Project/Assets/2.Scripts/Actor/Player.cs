@@ -44,6 +44,14 @@ public class Player : Agent
     public enum Type { None, IngamePlayer, OutgamePlayer}
     public Type CurrentType { get; set; }
 
+    private List<DataManager.AbilityData> abilityObtained = new List<DataManager.AbilityData>();
+
+    private float abilityBuff_IncreaseAttack = 0f;
+    private float abilityBuff_IncreaseSpeed = 0f;
+    private float abilityBuff_DecreaseDefenseCooltime = 0f;
+    private float abilityBuff_IncreaseAttackRange = 0f;
+    private float abilityBuff_IncreaseDefenseRange = 0f;
+
     private void Awake()
     {
 
@@ -92,6 +100,14 @@ public class Player : Agent
         isDie = false;
 
         CurrentCombo = 0;
+
+        abilityObtained.Clear();
+
+        abilityBuff_IncreaseAttack = 0f;
+        abilityBuff_IncreaseSpeed = 0f;
+        abilityBuff_DecreaseDefenseCooltime = 0f;
+        abilityBuff_IncreaseAttackRange = 0f;
+        abilityBuff_IncreaseDefenseRange = 0f;
     }
 
     public void SetSkin(GameObject skin = null)
@@ -328,7 +344,7 @@ public class Player : Agent
             if (enemyChild != null)
             {
                 //Debug.Log("Hit Enemy!!");
-                enemyChild.GetHit(1000);
+                enemyChild.GetHit(10);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
                 var randomX = UnityEngine.Random.Range(-3f, 3f);
@@ -408,6 +424,48 @@ public class Player : Agent
         return defenseTrigger.SafeIsActive();
     }
 
+    public void GetAbility(DataManager.AbilityData abilityData)
+    {
+        abilityObtained.Add(abilityData);
+
+        switch ((CommonDefine.Ability)abilityData.type)
+        {
+            case CommonDefine.Ability.HealHp:
+                {
+                    if (currHealth > 0 && currHealth < maxHealth)
+                    {
+                        ++currHealth;
+                        PrefabManager.Instance.UI_InGame.UpdateHealthObj();
+                    }
+                }
+                break;
+            case CommonDefine.Ability.IncreaseAttack:
+                {
+                    abilityBuff_IncreaseAttack += 0.1f; //10%Áõ°¡
+                }
+                break;
+            case CommonDefine.Ability.IncreaseSpeed:
+                {
+                    abilityBuff_IncreaseSpeed += 0.05f;
+                }
+                break;
+            case CommonDefine.Ability.DecreaseDefenseCooltime:
+                {
+                    abilityBuff_DecreaseDefenseCooltime += 0.25f;
+                }
+                break;
+            case CommonDefine.Ability.IncreaseAttackRange:
+                {
+                    abilityBuff_IncreaseAttackRange += 0.15f;
+                }
+                break;
+            case CommonDefine.Ability.IncreaseDefenseRange:
+                {
+                    abilityBuff_IncreaseDefenseRange += 0.1f;
+                }
+                break;
+        }
+    }
 
 
 #if UNITY_EDITOR

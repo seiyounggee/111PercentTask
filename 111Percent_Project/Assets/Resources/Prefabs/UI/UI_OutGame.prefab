@@ -5964,7 +5964,9 @@ MonoBehaviour:
   leftBtn: {fileID: 8268127393732519517}
   rightBtn: {fileID: 6912772771138912083}
   stageTxt: {fileID: 2622499842676094815}
+  currencyCoinTrans: {fileID: 2627608976813863827}
   currencyCoinTxt: {fileID: 8611762220243037146}
+  currencyGemTrans: {fileID: 5121706707618055999}
   currencyGemTxt: {fileID: 1856567593617806546}
 --- !u!1 &3857783620273579246
 GameObject:

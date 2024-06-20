@@ -13,7 +13,7 @@ public class UI_TweenContainer : UIBase
 
     private bool isTweenFinished = false;
 
-    private const int TWEEN_OBJ_COUNT_TOTAL = 20;
+    private const int TWEEN_OBJ_COUNT_TOTAL = 30;
 
     private void Awake()
     {
@@ -80,6 +80,8 @@ public class UI_TweenContainer : UIBase
 
         int groupCounter = 0; //5개씩 묶어서 보여주자
         int count = group_count * single_count;
+        if (count > tweenObjList.Count)
+            count = tweenObjList.Count;
         int intervalValue = (endValue - startValue) / count;
         for (int i = 0; i < count; i++)
         {

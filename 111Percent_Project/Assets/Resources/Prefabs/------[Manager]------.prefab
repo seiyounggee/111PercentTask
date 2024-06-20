@@ -724,3 +724,5 @@ MonoBehaviour:
   Effect_ExplosionNovaFire: {fileID: 5016852406723410596, guid: 8ab43bd3a285b2e4fa3a895bdbf9ba4d, type: 3}
   Effect_GibletExplodeStone: {fileID: 7373243705534047242, guid: b9d0d21c310e1a744ba502e376395606, type: 3}
   Effect_SwordSlashThickRed: {fileID: 6252778529602162175, guid: 865891b5f550fab469efa82c44332906, type: 3}
+  coinTexture: {fileID: 2800000, guid: 33effd6735e414dc7b70ded5e8bb47f8, type: 3}
+  gemTexture: {fileID: 2800000, guid: 6d034811652a84633bc8c63d22ce5574, type: 3}

@@ -64,17 +64,30 @@ public class UI_SelectAbility : UIBase
 
     private void OnClickBtn(Button btn)
     {
+        var player = InGameManager.Instance.player;
+
         if (btn == leftBtn)
         {
+            if (player != null)
+                player.GetAbility(selectedAbilityList[0]);
+
             Hide();
+
         }
         else if (btn == centerBtn)
         {
+            if (player != null)
+                player.GetAbility(selectedAbilityList[1]);
+
             Hide();
         }
         else if (btn == rightBtn)
         {
+            if (player != null)
+                player.GetAbility(selectedAbilityList[2]);
+
             Hide();
+
         }
     }
 }

@@ -91,8 +91,7 @@ public class PrefabManager : MonoSingleton<PrefabManager>
 
     #endregion //Function
 
-
-    #region InGame Prefabs
+    #region Prefabs
 
     public GameObject PlayerPrefab = null;
     public List<GameObject> EnemyPrefabList = new List<GameObject>();
@@ -116,6 +115,12 @@ public class PrefabManager : MonoSingleton<PrefabManager>
     public GameObject Effect_GibletExplodeStone = null;
     public GameObject Effect_SwordSlashThickRed = null;
 
+    #endregion
+
+    #region UI Resources
+
+    [SerializeField] public Texture coinTexture = null;
+    [SerializeField] public Texture gemTexture = null;
     #endregion
 
     #endregion
@@ -284,6 +289,29 @@ public class PrefabManager : MonoSingleton<PrefabManager>
     }
 
     private UI_FadePanel ui_FadePanel = null;
+
+    public UI_TweenContainer UI_TweenContainer
+    {
+        get
+        {
+            if (ui_TweenContainer == null)
+            {
+                GameObject pObj = InstantiateUIPrefab("Prefabs/UI/UI_TweenContainer", ui_parent, Vector3.zero);
+                if (pObj != null)
+                {
+                    ui_TweenContainer = pObj.GetComponent<UI_TweenContainer>();
+                    if (ui_TweenContainer == null)
+                        Debug.LogError("No UI_TweenContainer Script Attached!");
+                }
+                else
+                    Debug.LogError("Not Found UI_TweenContainer");
+            }
+
+            return ui_TweenContainer;
+        }
+    }
+
+    private UI_TweenContainer ui_TweenContainer = null;
 
     #endregion
 }

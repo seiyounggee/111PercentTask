@@ -103,9 +103,22 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     private void SetMap()
     {
         var list = PrefabManager.Instance.MapPrefabList;
-        var randomMap = list[UnityEngine.Random.Range(0, list.Count)];
-        var go = GameObject.Instantiate(randomMap);
-        go.SafeSetActive(true);
+        var stageData = DataManager.Instance.GetCurrentStageData();
+        if (stageData != null)
+        {
+            var map = list.Find(x => x.name.Equals(stageData.stageMapAssetName));
+            if (map != null)
+            {
+                var go = GameObject.Instantiate(map);
+                go.SafeSetActive(true);
+            }
+        }
+        else
+        {
+            var randomMap = list[UnityEngine.Random.Range(0, list.Count)];
+            var go = GameObject.Instantiate(randomMap);
+            go.SafeSetActive(true);
+        }
     }
 
     private void SetPlayer()
@@ -248,11 +261,16 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         {
             case CommonDefine.GameEndType.GameOver:
                 {
+                    DataManager.Instance.Coin += Random.Range(100, 1000);
+                    PrefabManager.Instance.UI_OutGame.RegisterTween = true;
                 }
                 break;
 
             case CommonDefine.GameEndType.GameClear:
                 {
+                    DataManager.Instance.Coin += Random.Range(1000, 5000);
+                    PrefabManager.Instance.UI_OutGame.RegisterTween = true;
+
                     //다음 스테이지로...!
                     var currStageID = DataManager.Instance.GetSavedStageID();
                     var nextStageID = ++currStageID;
