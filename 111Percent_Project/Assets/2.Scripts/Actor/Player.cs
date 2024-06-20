@@ -163,6 +163,8 @@ public class Player : Agent
         pos.z = 3f;
         var rot = Quaternion.Euler(180f, 360f, 30f);
         InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_SwordSlashThickRed, pos, rot);
+
+        SoundManager.Instance.PlaySound(SoundManager.SoundClip.Ingame_Attack);
     }
 
     public void Defense()
@@ -326,7 +328,7 @@ public class Player : Agent
             if (enemyChild != null)
             {
                 //Debug.Log("Hit Enemy!!");
-                enemyChild.GetHit(10);
+                enemyChild.GetHit(1000);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
                 var randomX = UnityEngine.Random.Range(-3f, 3f);
@@ -376,6 +378,8 @@ public class Player : Agent
 
                 ++CurrentCombo;
                 PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + CurrentCombo.ToString());
+
+                SoundManager.Instance.PlaySound(SoundManager.SoundClip.Ingame_Defense);
             }
         }
     }

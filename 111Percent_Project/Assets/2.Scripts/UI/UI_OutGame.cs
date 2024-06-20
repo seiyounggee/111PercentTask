@@ -12,6 +12,9 @@ public class UI_OutGame : UIBase
 
     [SerializeField] TextMeshProUGUI stageTxt;
 
+    [SerializeField] TextMeshProUGUI currencyCoinTxt;
+    [SerializeField] TextMeshProUGUI currencyGemTxt;
+
     private void Awake()
     {
         playBtn.SafeSetButton(OnClickBtn);
@@ -32,6 +35,9 @@ public class UI_OutGame : UIBase
         var currentStage = DataManager.Instance.GetCurrentStageData();
         if (currentStage != null)
             stageTxt.SafeSetText(string.Format("STAGE {0} : {1}", currentStage.stageNumber, currentStage.stageName));
+
+        currencyCoinTxt.SafeSetText(DataManager.Instance.Coin.ToString());
+        currencyGemTxt.SafeSetText(DataManager.Instance.Gem.ToString());
     }
 
     private void OnClickBtn(Button btn)

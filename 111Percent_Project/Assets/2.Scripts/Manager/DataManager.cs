@@ -27,7 +27,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 0, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 20, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 0, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 30, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 0, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 40, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 0, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_06" , hp = 50, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 0, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_10" , hp = 50, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -44,7 +44,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 1, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 50, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 1, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 60, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 1, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 70, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 1, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_06" , hp = 80, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 1, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_12" , hp = 80, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -61,7 +61,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 2, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 100, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 2, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 110, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 2, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 120, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 2, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_06" , hp = 130, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 2, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_07" , hp = 130, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -78,7 +78,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 3, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 100, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 3, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 110, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 3, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 120, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 3, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_06" , hp = 140, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 3, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_08" , hp = 140, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -95,7 +95,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 4, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 120, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 4, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 130, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 4, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 150, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 4, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_06" , hp = 160, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 4, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_09" , hp = 160, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -112,7 +112,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 5, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 140, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 5, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 160, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 5, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 200, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 5, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_06" , hp = 400, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 5, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_11" , hp = 400, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -170,6 +170,8 @@ public class DataManager : MonoSingleton<DataManager>
 
     public const string PLAYERPREFS_SKIN_NAME_KEY = "PLAYER_SKIN_NAME_KEY";
     public const string PLAYERPREFS_STAGE_KEY = "PLAYERPREFS_STAGE_KEY";
+    public const string PLAYERPREFS_COIN_KEY = "PLAYERPREFS_COIN_KEY";
+    public const string PLAYERPREFS_GEM_KEY = "PLAYERPREFS_GEM_KEY";
 
     public GameObject GetSavedSkinPrefab()
     {
@@ -238,6 +240,44 @@ public class DataManager : MonoSingleton<DataManager>
         var currID = GetSavedStageID();
         var data = StageDataList.Find(x => x.stageID.Equals(currID));
         return data;
+    }
+
+    public int Coin
+    {
+        get 
+        {
+            if (PlayerPrefs.HasKey(PLAYERPREFS_COIN_KEY))
+                return PlayerPrefs.GetInt(PLAYERPREFS_COIN_KEY);
+            else
+            {
+                PlayerPrefs.SetInt(PLAYERPREFS_COIN_KEY, 0);
+                return PlayerPrefs.GetInt(PLAYERPREFS_COIN_KEY);
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(PLAYERPREFS_COIN_KEY, value);
+        }
+    }
+
+    public int Gem
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(PLAYERPREFS_GEM_KEY))
+                return PlayerPrefs.GetInt(PLAYERPREFS_GEM_KEY);
+            else
+            {
+                PlayerPrefs.SetInt(PLAYERPREFS_GEM_KEY, 0);
+                return PlayerPrefs.GetInt(PLAYERPREFS_GEM_KEY);
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(PLAYERPREFS_GEM_KEY, value);
+        }
     }
 
     #endregion

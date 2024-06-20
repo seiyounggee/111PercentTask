@@ -34,12 +34,16 @@ public class PhaseOutGame : PhaseBase
 
     IEnumerator PhaseOutGameCoroutine()
     {
-        var logoUI = PrefabManager.Instance.UI_Logo;
-        logoUI.gameObject.SafeSetActive(false);
+        var logoUI = GameObject.FindAnyObjectByType<UI_Logo>();
+        if (logoUI != null)
+            logoUI.SafeSetActive(false);
+
         var titleUI = PrefabManager.Instance.UI_Title;
         titleUI.gameObject.SafeSetActive(false);
 
         OutGameManager.Instance.StartOutGame();
+
+        SoundManager.Instance.PlaySound_BGM(SoundManager.SoundClip.BGM_OutGame_01);
 
         yield return null;
         

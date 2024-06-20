@@ -69,6 +69,8 @@ public class Enemy_Child : MonoBehaviour
     {
         isDeactivated = true;
         gameObject.SafeSetActive(false);
+
+        SoundManager.Instance.PlaySound(SoundManager.SoundClip.Ingame_EnemyDeactivation);
     }
 
     public void GetHit(int dmg = 10)
@@ -105,7 +107,7 @@ public class Enemy_Child : MonoBehaviour
         {
             float colorValue = (float)currHealth / maxHealth;
             var newColor = new Color(colorValue, colorValue, colorValue);
-            meshMaterial.SetColor("_Color", newColor);
+            meshMaterial.SetColor("_BaseColor", newColor);
         }
     }
 

@@ -68,19 +68,19 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -2
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 64
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 8400000, guid: 35bf384e005f69c4c8d2ac6bd255ebc9, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!1 &1834403127194402994
@@ -127,77 +127,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56dd143a6f1e6c4cb95dc45f4cb8ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageDataList: []
   RoundDataList:
-  - roundNumber: 1
+  - stageID: 0
+    roundNumber: 1
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 2
+  - stageID: 0
+    roundNumber: 2
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 3
+  - stageID: 0
+    roundNumber: 3
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 4
+  - stageID: 0
+    roundNumber: 4
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 5
+  - stageID: 0
+    roundNumber: 5
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 6
+  - stageID: 0
+    roundNumber: 6
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 7
+  - stageID: 0
+    roundNumber: 7
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 8
+  - stageID: 0
+    roundNumber: 8
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 9
+  - stageID: 0
+    roundNumber: 9
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
-  - roundNumber: 10
+  - stageID: 0
+    roundNumber: 10
     enemyType: 0
     enemyPrefabName: 
     hp: 0
     fallDownSpeed: 0
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
+  AbilityDataList: []
 --- !u!1 &2383019221590341605
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +300,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae24896b2ad78949ac18edcc82f19f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4380166860621617887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8055387910454330617}
+  - component: {fileID: 7309704165633371046}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8055387910454330617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380166860621617887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8722823758404485143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7309704165633371046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380166860621617887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33982a5a8c8d86b42b997e70992a8095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList:
+  - clipType: 1
+    clip: {fileID: 8300000, guid: 5b728ca468884df46bea6e8d1d74c2e7, type: 3}
+    loopSound: 1
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - clipType: 2
+    clip: {fileID: 8300000, guid: b470432d7ce59ed4db71697500c86e9e, type: 3}
+    loopSound: 1
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - clipType: 8
+    clip: {fileID: 8300000, guid: a3705ab431447a143923749e2dcb3723, type: 3}
+    loopSound: 0
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
+  - clipType: 9
+    clip: {fileID: 8300000, guid: afc403d3749582745bb1ea72df8b204f, type: 3}
+    loopSound: 0
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
+  - clipType: 10
+    clip: {fileID: 8300000, guid: 24c8b2e56e1dfff48928c2f2647ced56, type: 3}
+    loopSound: 0
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
 --- !u!1 &8261902550012234829
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,8 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  currentRoundIndex: -1
-  lastRoundIndex: -1
+  enemyList: []
   currentEnemy: {fileID: 0}
   CurrentInGameState: 0
   CurrentGameEndType: 0
@@ -423,6 +509,7 @@ Transform:
   - {fileID: 4334353985469297032}
   - {fileID: 6302790367109521310}
   - {fileID: 6418822007228643686}
+  - {fileID: 8055387910454330617}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8722823758404485142
@@ -572,13 +659,20 @@ MonoBehaviour:
   ui_parent: {fileID: 0}
   PlayerPrefab: {fileID: 2250124477072352363, guid: 9386a406a4e0ef34697f3623624ad9be, type: 3}
   EnemyPrefabList:
-  - {fileID: 9163557717756197900, guid: d14541cc84212014e878f770e558396e, type: 3}
   - {fileID: 9015501514399004225, guid: 22195ce9a3798f64aa022995e5e954ff, type: 3}
   - {fileID: 6386125166707851902, guid: 6b46a5deda3fb2f4585ce6fc4b6dd973, type: 3}
   - {fileID: 2751730022715540043, guid: 1497c33df2c3a1c44b8aeaedf178bf6d, type: 3}
   - {fileID: 1735216539874563682, guid: 68d5d73c5eba92b4bb90d403988d4b4b, type: 3}
   - {fileID: 2063732767167654409, guid: 9633181e5c22b9f4b90580a32685d80f, type: 3}
   - {fileID: 3763504834126237696, guid: 14b37f7efdae27d4ca6dd3b5a4a21e2b, type: 3}
+  - {fileID: 2178599907264182250, guid: d5d5a0c776a56ec4eae917ff57eaaf6b, type: 3}
+  - {fileID: 1927022806963241287, guid: f3643cc8db41c474d90e9ce1917ed849, type: 3}
+  - {fileID: 2757898941254916636, guid: 9b914704fa8299846b3d540c9015b06f, type: 3}
+  - {fileID: 7886547955538520966, guid: 4ba4ed6d798c23c4a8a76515d26d890c, type: 3}
+  - {fileID: 1870855981581568812, guid: 7f6e30edfdf0c7b4bb8c7a0a59587feb, type: 3}
+  - {fileID: 6036057072065690799, guid: f69d874724cbfd0419875e746a53ae68, type: 3}
+  - {fileID: 2436653569892895053, guid: 30ddbdd60b560d3428326b53b96cff01, type: 3}
+  - {fileID: 5346678006997336973, guid: e18adf52248dedd4caad5af19670f88b, type: 3}
   PlayerSkinPrefabList:
   - {fileID: 1554878986191708345, guid: faba1841ad748e544a9fdb44ce1f1e87, type: 3}
   - {fileID: 5094706579049366427, guid: 0137f67914305c7488afe7e11dedb971, type: 3}

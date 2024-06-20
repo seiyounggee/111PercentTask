@@ -243,6 +243,23 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 #if UNITY_EDITOR
         Debug.Log("<color=cyan>EndGame()</color>");
 #endif
+
+        switch (CurrentGameEndType)
+        {
+            case CommonDefine.GameEndType.GameOver:
+                {
+                }
+                break;
+
+            case CommonDefine.GameEndType.GameClear:
+                {
+                    //다음 스테이지로...!
+                    var currStageID = DataManager.Instance.GetSavedStageID();
+                    var nextStageID = ++currStageID;
+                    DataManager.Instance.SaveStageID(nextStageID);
+                }
+                break;
+        }
     }
 
     public void AddScore(int score)
