@@ -12,7 +12,6 @@ public class Player : Agent
     private Transform rightHand = null;
     private Transform leftHand = null;
 
-    private float speed = 10f;
     [ReadOnly] public bool isGrounded = false;
 
     private Vector3 jumpUpVelocity = Vector3.zero;
@@ -270,7 +269,7 @@ public class Player : Agent
             {
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * jumpUpVelocity.y;
 
-                jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+                jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * 10f;
                 if (jumpUpVelocity.y <= 0)
                 {
                     jumpUpVelocity.y = 0;
@@ -280,7 +279,7 @@ public class Player : Agent
             if (isGrounded == false && jumpUpVelocity.y <= 0)
             {
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
-                fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * speed;
+                fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 20f;
 
                 //바닥 뚫고 못가게...
                 if (this.transform.position.y <= 0f)
@@ -375,6 +374,8 @@ public class Player : Agent
             var enemyChild = other.transform.GetComponent<Enemy_Child>();
             if (enemyChild != null)
             {
+                defenseTrigger.SafeSetActive(false);
+
                 var hitPoint = other.ClosestPoint(transform.position);
                 var dist = Mathf.Abs(transform.position.y - hitPoint.y);
                 //보통 dist 값은 2.3 ~ 4
@@ -474,7 +475,7 @@ public class Player : Agent
                 {
                     abilityBuff_IncreaseDefenseRange += 0.1f;
 
-                    defenseTrigger.transform.localScale = (1 + abilityBuff_IncreaseAttackRange) * Vector3.one;
+                    defenseTrigger.transform.localScale = (1 + abilityBuff_IncreaseDefenseRange) * Vector3.one;
                 }
                 break;
         }

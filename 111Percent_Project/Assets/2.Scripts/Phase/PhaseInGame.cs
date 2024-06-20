@@ -34,6 +34,7 @@ public class PhaseInGame : PhaseBase
         //게임 시작
         InGameManager.Instance.StartInGame();
 
+        SoundManager.Instance.StopAllBgmPlaying(SoundManager.StopSoundType.Immediate);
         SoundManager.Instance.PlaySound_BGM(SoundManager.SoundClip.BGM_InGame_01);
     }
 }

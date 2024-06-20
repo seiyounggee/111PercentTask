@@ -51,8 +51,11 @@ MonoBehaviour:
   bodyTrigger: {fileID: 3562287625494368076}
   attackTrigger: {fileID: 3514666706259804553}
   defenseTrigger: {fileID: 6915122395589533395}
-  speed: 10
+  shieldEffect: {fileID: 0}
   isGrounded: 0
+  currHealth: 3
+  maxHealth: 3
+  isDie: 0
 --- !u!1 &4295981292034630794
 GameObject:
   m_ObjectHideFlags: 0

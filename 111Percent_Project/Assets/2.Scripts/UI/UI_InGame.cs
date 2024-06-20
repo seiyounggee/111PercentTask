@@ -211,7 +211,7 @@ public class UI_InGame : UIBase
         UtilityInvoker.Invoke(this, () =>
         {
             hitUI.SafeSetActive(false);
-        }, 0.3f);
+        }, 0.3f, "hitUI");
     }
 
     public void ActivateMessageUI(string msg)
@@ -226,7 +226,7 @@ public class UI_InGame : UIBase
         UtilityInvoker.Invoke(this, () =>
         {
             msgUI.SafeSetActive(false);
-        }, 1f);
+        }, 1f, "msgUI");
     }
 
     public void UpdateCombo(string msg)

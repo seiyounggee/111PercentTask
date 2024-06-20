@@ -190,7 +190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -565.88367}
+  m_AnchoredPosition: {x: 0, y: -540.8836}
   m_SizeDelta: {x: 400, y: 266.2327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7209149612982244734
@@ -5968,6 +5968,7 @@ MonoBehaviour:
   currencyCoinTxt: {fileID: 8611762220243037146}
   currencyGemTrans: {fileID: 5121706707618055999}
   currencyGemTxt: {fileID: 1856567593617806546}
+  RegisterTween: 0
 --- !u!1 &3857783620273579246
 GameObject:
   m_ObjectHideFlags: 0
@@ -6478,6 +6479,7 @@ GameObject:
   - component: {fileID: 5405419876481876823}
   - component: {fileID: 7249041852920673419}
   - component: {fileID: 2978284110399017112}
+  - component: {fileID: 2197541238025506291}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -6500,9 +6502,9 @@ RectTransform:
   - {fileID: 288400544305399820}
   m_Father: {fileID: 3818417074295571370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -599}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 325}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5405419876481876823
@@ -6587,6 +6589,32 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2197541238025506291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758228857357196390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0.5
+  m_Width: 0.25
+  m_Rotation: 135
+  m_Softness: 1
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 1
+    initialPlayDelay: 0
+    duration: 2.5
+    loop: 1
+    loopDelay: 0
+    updateMode: 0
 --- !u!1 &6129385251939538828
 GameObject:
   m_ObjectHideFlags: 0

@@ -257,6 +257,8 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         Debug.Log("<color=cyan>EndGame()</color>");
 #endif
 
+        SoundManager.Instance.StopAllBgmPlaying(SoundManager.StopSoundType.FadeOut);
+
         switch (CurrentGameEndType)
         {
             case CommonDefine.GameEndType.GameOver:

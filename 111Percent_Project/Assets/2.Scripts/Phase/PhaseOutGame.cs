@@ -43,6 +43,7 @@ public class PhaseOutGame : PhaseBase
 
         OutGameManager.Instance.StartOutGame();
 
+        SoundManager.Instance.StopAllBgmPlaying(SoundManager.StopSoundType.Immediate);
         SoundManager.Instance.PlaySound_BGM(SoundManager.SoundClip.BGM_OutGame_01);
 
         yield return null;

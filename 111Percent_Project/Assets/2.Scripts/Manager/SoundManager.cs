@@ -161,15 +161,20 @@ public class SoundManager : MonoSingleton<SoundManager>
         if (sc != null && sc.audioSource != null && sc.clip != null)
         {
             if (type == StopSoundType.Immediate)
+            {
+                UtilityCoroutine.StopCoroutine(ref fadeOutSound, this);
                 sc.audioSource.Stop();
+            }
             else if (type == StopSoundType.FadeOut)
             {
-                StartCoroutine(FadeOutSound(sc));
+                UtilityCoroutine.StartCoroutine(ref fadeOutSound, FadeOutSound(sc), this);
             }
         }
     }
 
     //Fade Out 기능 미완성임! coroutine 여러번 호출 당할 경우 이상함
+
+    private IEnumerator fadeOutSound = null;
     private IEnumerator FadeOutSound(SoundClipInfo info, float fadeOutSpeed = 0.1f)
     {
         AudioSource audio = info.audioSource;
@@ -248,11 +253,15 @@ public class SoundManager : MonoSingleton<SoundManager>
             if (type == StopSoundType.Immediate)
             {
                 if (i.audioSource != null && i.audioSource.isPlaying)
+                {
+                    UtilityCoroutine.StopCoroutine(ref fadeOutSound, this);
                     i.audioSource.Stop();
+                }
+
             }
             else if (type == StopSoundType.FadeOut)
             {
-                StartCoroutine(FadeOutSound(i));
+                UtilityCoroutine.StartCoroutine(ref fadeOutSound, FadeOutSound(i), this);
             }
         }
     }
@@ -264,11 +273,16 @@ public class SoundManager : MonoSingleton<SoundManager>
             if (type == StopSoundType.Immediate)
             {
                 if (i.audioSource != null && i.audioSource.isPlaying)
+                {
+                    UtilityCoroutine.StopCoroutine(ref fadeOutSound, this);
                     i.audioSource.Stop();
+                    i.audioSource.volume = 1; //temp...
+                    i.audioSource.pitch = 1; //temp...
+                }
             }
             else if (type == StopSoundType.FadeOut)
             {
-                StartCoroutine(FadeOutSound(i));
+                UtilityCoroutine.StartCoroutine(ref fadeOutSound, FadeOutSound(i), this);
             }
         }
     }

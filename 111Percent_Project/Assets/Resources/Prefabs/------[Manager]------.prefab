@@ -348,13 +348,13 @@ MonoBehaviour:
   - clipType: 1
     clip: {fileID: 8300000, guid: 5b728ca468884df46bea6e8d1d74c2e7, type: 3}
     loopSound: 1
-    volume: 0.8
+    volume: 1
     pitch: 1
     audioSource: {fileID: 0}
   - clipType: 2
     clip: {fileID: 8300000, guid: b470432d7ce59ed4db71697500c86e9e, type: 3}
     loopSound: 1
-    volume: 0.8
+    volume: 1
     pitch: 1
     audioSource: {fileID: 0}
   - clipType: 8
@@ -673,6 +673,11 @@ MonoBehaviour:
   - {fileID: 6036057072065690799, guid: f69d874724cbfd0419875e746a53ae68, type: 3}
   - {fileID: 2436653569892895053, guid: 30ddbdd60b560d3428326b53b96cff01, type: 3}
   - {fileID: 5346678006997336973, guid: e18adf52248dedd4caad5af19670f88b, type: 3}
+  - {fileID: 2106299081736034998, guid: 95a0d2dcc65c3324189753b1ab015396, type: 3}
+  - {fileID: 5658961023838384428, guid: 134323b65f17a0a4380b01b31adcf5d4, type: 3}
+  - {fileID: 1540706268706436282, guid: 92c6bc42d67ed8b469a35b3107f28b8f, type: 3}
+  - {fileID: 522176788501377982, guid: 92031e7ec6d49684a880035e931ef059, type: 3}
+  - {fileID: 2710757657369903770, guid: a9a0d447ef6e2c344ab63c0ee80cf118, type: 3}
   PlayerSkinPrefabList:
   - {fileID: 1554878986191708345, guid: faba1841ad748e544a9fdb44ce1f1e87, type: 3}
   - {fileID: 5094706579049366427, guid: 0137f67914305c7488afe7e11dedb971, type: 3}
@@ -724,5 +729,6 @@ MonoBehaviour:
   Effect_ExplosionNovaFire: {fileID: 5016852406723410596, guid: 8ab43bd3a285b2e4fa3a895bdbf9ba4d, type: 3}
   Effect_GibletExplodeStone: {fileID: 7373243705534047242, guid: b9d0d21c310e1a744ba502e376395606, type: 3}
   Effect_SwordSlashThickRed: {fileID: 6252778529602162175, guid: 865891b5f550fab469efa82c44332906, type: 3}
+  Effect_ShieldBlue: {fileID: 5053285379462588701, guid: 7e2ef61abea134c429fb691c988cc923, type: 3}
   coinTexture: {fileID: 2800000, guid: 33effd6735e414dc7b70ded5e8bb47f8, type: 3}
   gemTexture: {fileID: 2800000, guid: 6d034811652a84633bc8c63d22ce5574, type: 3}
