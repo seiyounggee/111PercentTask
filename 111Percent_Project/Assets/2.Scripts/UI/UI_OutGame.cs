@@ -17,13 +17,21 @@ public class UI_OutGame : UIBase
     [SerializeField] Transform currencyGemTrans;
     [SerializeField] TextMeshProUGUI currencyGemTxt;
 
-    public bool RegisterTween = false;
+    [SerializeField] Button shopBtn;
+    [SerializeField] Button inventoryBtn;
+    [SerializeField] Button upgradeBtn;
+
+    [ReadOnly] public bool RegisterTween = false;
 
     private void Awake()
     {
         playBtn.SafeSetButton(OnClickBtn);
         leftBtn.SafeSetButton(OnClickBtn);
         rightBtn.SafeSetButton(OnClickBtn);
+
+        shopBtn.SafeSetButton(OnClickBtn);
+        inventoryBtn.SafeSetButton(OnClickBtn);
+        upgradeBtn.SafeSetButton(OnClickBtn);
     }
 
     public override void Show()
@@ -35,7 +43,7 @@ public class UI_OutGame : UIBase
         TweenCurrency();
     }
 
-    private void SetUI()
+    public void SetUI()
     {
         var stageID = DataManager.Instance.GetSavedStageID();
         var currentStage = DataManager.Instance.GetCurrentStageData();
@@ -86,7 +94,7 @@ public class UI_OutGame : UIBase
             {
                 if (index == 0)
                 {
-                    index = list.Count -1;
+                    index = list.Count - 1;
                     DataManager.Instance.SaveSkinPrefab(list[index].name);
                 }
                 else
@@ -97,6 +105,19 @@ public class UI_OutGame : UIBase
 
                 RenderTextureManager.Instance.ActivateRenderTexture_Player();
             }
+        }
+        else if (btn == shopBtn)
+        {
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Not Ready Yet...!");
+            UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
+        }
+        else if (btn == inventoryBtn)
+        {
+            UIManager.Instance.ShowUI(UIManager.UIType.UI_Inventory);
+        }
+        else if (btn == upgradeBtn)
+        {
+            UIManager.Instance.ShowUI(UIManager.UIType.UI_Upgrade);
         }
     }
 

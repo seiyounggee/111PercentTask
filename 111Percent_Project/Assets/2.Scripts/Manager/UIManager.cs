@@ -14,9 +14,12 @@ public class UIManager : MonoSingleton<UIManager>
         UI_Logo,
         UI_CommonPanel,
         UI_FadePanel,
+        UI_ToastMessage,
 
         //Outgame UI
         UI_OutGame,
+        UI_Upgrade,
+        UI_Inventory,
 
         //Ingame UI
         UI_InGame,
@@ -100,8 +103,17 @@ public class UIManager : MonoSingleton<UIManager>
             case UIType.UI_Logo:
                 ui = PrefabManager.Instance.UI_Logo;
                 break;
+            case UIType.UI_ToastMessage:
+                ui = PrefabManager.Instance.UI_ToastMessage;
+                break;
             case UIType.UI_OutGame:
                 ui = PrefabManager.Instance.UI_OutGame;
+                break;
+            case UIType.UI_Upgrade:
+                ui = PrefabManager.Instance.UI_Upgrade;
+                break;
+            case UIType.UI_Inventory:
+                ui = PrefabManager.Instance.UI_Inventory;
                 break;
             case UIType.UI_InGame:
                 ui = PrefabManager.Instance.UI_InGame;
@@ -195,6 +207,7 @@ public class UIManager : MonoSingleton<UIManager>
         HideUI(UIType.UI_CommonPanel);
 
         HideUI(UIType.UI_OutGame);
+        HideUI(UIType.UI_Upgrade);
     }
 
     public void HideGrouped_Ingame()

@@ -8,6 +8,7 @@ public class DataManager : MonoSingleton<DataManager>
     [SerializeField] public List<StageData> StageDataList = new List<StageData>();
     [SerializeField] public List<RoundData> RoundDataList = new List<RoundData>();
     [SerializeField] public List<AbilityData> AbilityDataList = new List<AbilityData>();
+    [SerializeField] public List<UpgradeData> UpgradeDataList = new List<UpgradeData>();
 
     public override void Awake()
     {
@@ -129,6 +130,21 @@ public class DataManager : MonoSingleton<DataManager>
             new AbilityData() {  id = 6, type = (int)CommonDefine.Ability.IncreaseDefenseRange, name = "Increase Defense Range", desc = "Defense Range + 10%" },
             new AbilityData() {  id = 7, type = (int)CommonDefine.Ability.Laser, name = "Laser", desc = "Laser Attack +20%" }
         };
+
+        UpgradeDataList = new List<UpgradeData>()
+        {
+            new UpgradeData(){ level = 0, cost = 0, damageValue = 0 },
+            new UpgradeData(){ level = 1, cost = 2000, damageValue = 2 },
+            new UpgradeData(){ level = 2, cost = 3000, damageValue = 3 },
+            new UpgradeData(){ level = 3, cost = 4000, damageValue = 4 },
+            new UpgradeData(){ level = 4, cost = 5000, damageValue = 5 },
+            new UpgradeData(){ level = 5, cost = 6000, damageValue = 7 },
+            new UpgradeData(){ level = 6, cost = 7000, damageValue = 9 },
+            new UpgradeData(){ level = 7, cost = 8000, damageValue = 11 },
+            new UpgradeData(){ level = 8, cost = 9000, damageValue = 13 },
+            new UpgradeData(){ level = 9, cost = 10000, damageValue = 15 },
+            new UpgradeData(){ level = 10, cost = 11000, damageValue = 20 },
+        };
     }
 
 
@@ -164,7 +180,15 @@ public class DataManager : MonoSingleton<DataManager>
         public int type;
         public string name;
         public string desc;
-    }    
+    }
+
+    [Serializable]
+    public class UpgradeData
+    {
+        public int level;
+        public int cost;
+        public int damageValue;
+    }
 
     #endregion
 
@@ -175,6 +199,8 @@ public class DataManager : MonoSingleton<DataManager>
     public const string PLAYERPREFS_COIN_KEY = "PLAYERPREFS_COIN_KEY";
     public const string PLAYERPREFS_GEM_KEY = "PLAYERPREFS_GEM_KEY";
     public const string PLAYERPREFS_TUTORIAL_FINISH_KEY = "PLAYERPREFS_TUTORIAL_FINISH_KEY";
+    public const string PLAYERPREFS_UPGRADE_LEVEL_KEY = "PLAYERPREFS_UPGRADE_LEVEL_KEY";
+    public const string PLAYERPREFS_WEAPON_SKIN_KEY = "PLAYERPREFS_WEAPON_SKIN_KEY";
 
     public GameObject GetSavedSkinPrefab()
     {
@@ -245,6 +271,15 @@ public class DataManager : MonoSingleton<DataManager>
         return data;
     }
 
+    public UpgradeData GetCurrentUpgradeData()
+    {
+        var data = UpgradeDataList.Find(x => x.level.Equals(CurrentUpgradeLevel));
+        if (data != null)
+            return data;
+
+        return null;
+    }
+
     public int Coin
     {
         get 
@@ -301,6 +336,45 @@ public class DataManager : MonoSingleton<DataManager>
             PlayerPrefs.SetInt(PLAYERPREFS_TUTORIAL_FINISH_KEY, value);
         }
     }
+
+    public int CurrentUpgradeLevel
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(PLAYERPREFS_UPGRADE_LEVEL_KEY))
+                return PlayerPrefs.GetInt(PLAYERPREFS_UPGRADE_LEVEL_KEY);
+            else
+            {
+                PlayerPrefs.SetInt(PLAYERPREFS_UPGRADE_LEVEL_KEY, 0);
+                return PlayerPrefs.GetInt(PLAYERPREFS_UPGRADE_LEVEL_KEY);
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(PLAYERPREFS_UPGRADE_LEVEL_KEY, value);
+        }
+    }
+
+    public int CurrentWeaponSkinIndex
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(PLAYERPREFS_WEAPON_SKIN_KEY))
+                return PlayerPrefs.GetInt(PLAYERPREFS_WEAPON_SKIN_KEY);
+            else
+            {
+                PlayerPrefs.SetInt(PLAYERPREFS_WEAPON_SKIN_KEY, 0);
+                return PlayerPrefs.GetInt(PLAYERPREFS_WEAPON_SKIN_KEY);
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(PLAYERPREFS_WEAPON_SKIN_KEY, value);
+        }
+    }
+
 
     #endregion
 }

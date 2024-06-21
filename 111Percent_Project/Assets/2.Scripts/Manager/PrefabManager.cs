@@ -199,6 +199,52 @@ public class PrefabManager : MonoSingleton<PrefabManager>
 
     private UI_OutGame ui_OutGame = null;
 
+    public UI_Upgrade UI_Upgrade
+    {
+        get
+        {
+            if (ui_Upgrade == null)
+            {
+                GameObject pObj = InstantiateUIPrefab("Prefabs/UI/UI_Upgrade", ui_parent, Vector3.zero);
+                if (pObj != null)
+                {
+                    ui_Upgrade = pObj.GetComponent<UI_Upgrade>();
+                    if (ui_Upgrade == null)
+                        Debug.LogError("No UI_Upgrade Script Attached!");
+                }
+                else
+                    Debug.LogError("Not Found UI_Upgrade");
+            }
+
+            return ui_Upgrade;
+        }
+    }
+
+    private UI_Upgrade ui_Upgrade = null;
+
+    public UI_Inventory UI_Inventory
+    {
+        get
+        {
+            if (ui_Inventory == null)
+            {
+                GameObject pObj = InstantiateUIPrefab("Prefabs/UI/UI_Inventory", ui_parent, Vector3.zero);
+                if (pObj != null)
+                {
+                    ui_Inventory = pObj.GetComponent<UI_Inventory>();
+                    if (ui_Inventory == null)
+                        Debug.LogError("No UI_Inventory Script Attached!");
+                }
+                else
+                    Debug.LogError("Not Found UI_Inventory");
+            }
+
+            return ui_Inventory;
+        }
+    }
+
+    private UI_Inventory ui_Inventory = null;
+
     public UI_InGame UI_InGame
     {
         get
@@ -313,6 +359,29 @@ public class PrefabManager : MonoSingleton<PrefabManager>
     }
 
     private UI_TweenContainer ui_TweenContainer = null;
+
+    public UI_ToastMessage UI_ToastMessage
+    {
+        get
+        {
+            if (ui_ToastMessage == null)
+            {
+                GameObject pObj = InstantiateUIPrefab("Prefabs/UI/UI_ToastMessage", ui_parent, Vector3.zero);
+                if (pObj != null)
+                {
+                    ui_ToastMessage = pObj.GetComponent<UI_ToastMessage>();
+                    if (ui_ToastMessage == null)
+                        Debug.LogError("No UI_ToastMessage Script Attached!");
+                }
+                else
+                    Debug.LogError("Not Found UI_ToastMessage");
+            }
+
+            return ui_ToastMessage;
+        }
+    }
+
+    private UI_ToastMessage ui_ToastMessage = null;
 
     #endregion
 }

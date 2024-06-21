@@ -134,9 +134,13 @@ public partial class Player : Agent
         }
 
         var list_weapon = PrefabManager.Instance.WeaponSkinPrefabList;
-        var randomSkin_weapon = list_weapon[UnityEngine.Random.Range(0, list_weapon.Count)];
+        var selectedIndex = 0;
+        if (DataManager.Instance.CurrentWeaponSkinIndex < list_weapon.Count)
+            selectedIndex = DataManager.Instance.CurrentWeaponSkinIndex;
+        else
+            selectedIndex = UnityEngine.Random.Range(0, list_weapon.Count);
 
-        var weapon = GameObject.Instantiate(randomSkin_weapon, Vector3.zero, Quaternion.identity);
+        var weapon = GameObject.Instantiate(list_weapon[selectedIndex], Vector3.zero, Quaternion.identity);
         weapon.transform.SetParent(rightHand);
         weapon.transform.localPosition = new Vector3(0.08f, -0.011f, -0.4f);
         weapon.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
@@ -346,6 +350,9 @@ public partial class Player : Agent
                 var damage = 10;
                 damage += (int)((float)damage * abilityBuff_IncreaseAttack);
                 damage += Random.Range(0, 3);
+                var upgradeData = DataManager.Instance.GetCurrentUpgradeData();
+                if (upgradeData != null)
+                    damage += upgradeData.damageValue;
                 enemyChild.GetHit(damage);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
