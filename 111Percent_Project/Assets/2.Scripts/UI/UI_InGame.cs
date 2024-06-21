@@ -25,6 +25,9 @@ public class UI_InGame : UIBase
     [SerializeField] TextMeshProUGUI gameClearScoreTxt = null;
     [SerializeField] Button gameClearBtn = null;
 
+    [SerializeField] GameObject tutorialPopup = null;
+    [SerializeField] Button tutorialOkBtn = null;
+
     [SerializeField] Slider progressSlider = null;
     [SerializeField] GameObject enemyIconIdicator = null;
     private List<GameObject> enemyIconList = new List<GameObject>();
@@ -35,6 +38,7 @@ public class UI_InGame : UIBase
     {
         gameOverBtn.SafeSetButton(OnClickBtn);
         gameClearBtn.SafeSetButton(OnClickBtn);
+        tutorialOkBtn.SafeSetButton(OnClickBtn);
 
         enemyIconIdicator.SafeSetActive(false);
     }
@@ -79,6 +83,8 @@ public class UI_InGame : UIBase
 
         gameOverPopup.SafeSetActive(false);
         gameClearPopup.SafeSetActive(false);
+
+        tutorialPopup.SafeSetActive(false);
     }
 
     public void UpdateHealthObj()
@@ -229,6 +235,11 @@ public class UI_InGame : UIBase
         }, 1f, "msgUI");
     }
 
+    public void ActivateTutorialUI()
+    {
+        tutorialPopup.SafeSetActive(true);
+    }
+
     public void UpdateCombo(string msg)
     {
         if (string.IsNullOrEmpty(msg))
@@ -264,9 +275,14 @@ public class UI_InGame : UIBase
         {
             PhaseManager.Instance.ChangePhase(CommonDefine.Phase.OutGame);
         }
-        else if (btn == gameClearBtn) 
+        else if (btn == gameClearBtn)
         {
             PhaseManager.Instance.ChangePhase(CommonDefine.Phase.OutGame);
+        }
+        else if (btn == tutorialOkBtn)
+        {
+            tutorialPopup.SafeSetActive(false);
+            DataManager.Instance.IsTutorialFinish = 1;
         }
     }
 

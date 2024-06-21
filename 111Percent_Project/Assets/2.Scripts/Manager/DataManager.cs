@@ -174,6 +174,7 @@ public class DataManager : MonoSingleton<DataManager>
     public const string PLAYERPREFS_STAGE_KEY = "PLAYERPREFS_STAGE_KEY";
     public const string PLAYERPREFS_COIN_KEY = "PLAYERPREFS_COIN_KEY";
     public const string PLAYERPREFS_GEM_KEY = "PLAYERPREFS_GEM_KEY";
+    public const string PLAYERPREFS_TUTORIAL_FINISH_KEY = "PLAYERPREFS_TUTORIAL_FINISH_KEY";
 
     public GameObject GetSavedSkinPrefab()
     {
@@ -279,6 +280,25 @@ public class DataManager : MonoSingleton<DataManager>
         set
         {
             PlayerPrefs.SetInt(PLAYERPREFS_GEM_KEY, value);
+        }
+    }
+
+    public int IsTutorialFinish
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(PLAYERPREFS_TUTORIAL_FINISH_KEY))
+                return PlayerPrefs.GetInt(PLAYERPREFS_TUTORIAL_FINISH_KEY);
+            else
+            {
+                PlayerPrefs.SetInt(PLAYERPREFS_TUTORIAL_FINISH_KEY, 0);
+                return PlayerPrefs.GetInt(PLAYERPREFS_TUTORIAL_FINISH_KEY);
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(PLAYERPREFS_TUTORIAL_FINISH_KEY, value);
         }
     }
 

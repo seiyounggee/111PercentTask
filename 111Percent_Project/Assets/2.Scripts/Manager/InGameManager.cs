@@ -37,6 +37,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         SetPoolGameObjects();
 
         SetGameState(CommonDefine.InGameState.Play);
+        yield return StartCoroutine(Tutorial());
         yield return StartCoroutine(EnemyRound());
 
         SetupInGameUI_Result();
@@ -141,6 +142,28 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 #endif
     }
 
+    private IEnumerator Tutorial()
+    {
+        if (DataManager.Instance.IsTutorialFinish == 0)
+        {
+            PrefabManager.Instance.UI_InGame.ActivateTutorialUI();
+        }
+        else
+        {
+            //튜토리얼 이미 끝난 상태
+            yield break;
+        }
+
+        while (true)
+        {
+            yield return null;
+
+            if (DataManager.Instance.IsTutorialFinish == 1)
+                break;
+        }
+    }
+
+
     private IEnumerator EnemyRound()
     {
         var stageList = DataManager.Instance.StageDataList;
@@ -225,7 +248,6 @@ public partial class InGameManager : MonoSingleton<InGameManager>
                 if (CurrentRoundIndex == LastRoundIndex)
                 {
                     //마지막 놈이 죽은 경우 Loop 빠져나가자
-                    yield return new WaitForSeconds(3f);
                     CurrentGameEndType = CommonDefine.GameEndType.GameClear;
                     break;
                 }
