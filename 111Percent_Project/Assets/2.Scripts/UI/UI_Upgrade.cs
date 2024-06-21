@@ -49,7 +49,7 @@ public class UI_Upgrade : UIBase
         {
             upgradeCost = data.cost;
             upgradeCostTxt.SafeSetText(data.cost.ToString());
-            upgradeDmgTxt.SafeSetText(data.damageValue.ToString());
+            upgradeDmgTxt.SafeSetText("+" + data.damageValue.ToString());
         }
     }
 
@@ -58,7 +58,12 @@ public class UI_Upgrade : UIBase
         if (btn == upgradeBtn)
         {
             if (upgradeCost <= 0)
+            {
+                PrefabManager.Instance.UI_ToastMessage.SetMessage("Max Level");
+                UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
+                Hide();
                 return;
+            }
 
             if (DataManager.Instance.Coin < upgradeCost)
             {

@@ -14,7 +14,7 @@ public class Enemy : Agent
     public float jumpUpSpeed_PlayerDefense;
 
     private Vector3 jumpUpVelocity = Vector3.zero;
-    private Vector3 fallDownVelocity = Vector3.zero;
+    public Vector3 fallDownVelocity = Vector3.zero;
 
     private void Awake()
     {
@@ -56,6 +56,9 @@ public class Enemy : Agent
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
                 fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * fallDownSpeed;
 
+                if (fallDownVelocity.y <= -32f) //너무 빠르면 뚫어버려서..
+                    fallDownVelocity = new Vector3(fallDownVelocity.x, -32f, fallDownVelocity.z);
+
                 //플레이어 밑으로 가지 않도록...!
                 if (InGameManager.Instance.player != null)
                 {
@@ -78,6 +81,9 @@ public class Enemy : Agent
     {
         fallDownSpeed = data.fallDownSpeed;
         jumpUpSpeed_PlayerCollision = data.jumpUpSpeed_PlayerCollision;
+        jumpUpSpeed_PlayerCollision = Mathf.Clamp(jumpUpSpeed_PlayerCollision, 3f, float.MaxValue);
+        //3이하면 뚫어버림...
+
         jumpUpSpeed_PlayerDefense = data.jumpUpSpeed_PlayerDefense;
 
         for (int i = 0; i < EnemyChildList.Count; i++)

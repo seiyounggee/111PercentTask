@@ -6,6 +6,7 @@ using UnityEngine;
 public class Trigger_Callback : MonoBehaviour
 {
     public Action<Collider> OnTriggerEnterAction = null;
+    public Action<Collider> OnTriggerStayAction = null;
     public Action<Collider> OnTriggerExitAction = null;
 
     void OnTriggerEnter(Collider other)
@@ -15,6 +16,16 @@ public class Trigger_Callback : MonoBehaviour
             || other.transform.CompareTag(CommonDefine.TAG_Enemy))
         {
             OnTriggerEnterAction?.Invoke(other);
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.transform.CompareTag(CommonDefine.TAG_Floor)
+            || other.transform.CompareTag(CommonDefine.TAG_Player)
+            || other.transform.CompareTag(CommonDefine.TAG_Enemy))
+        {
+            OnTriggerStayAction?.Invoke(other);
         }
     }
 

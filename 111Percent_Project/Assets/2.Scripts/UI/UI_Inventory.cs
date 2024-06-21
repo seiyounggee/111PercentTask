@@ -30,37 +30,37 @@ public class UI_Inventory : UIBase
         if (btn == btn_1)
         {
             DataManager.Instance.CurrentWeaponSkinIndex = 0;
-            PrefabManager.Instance.UI_ToastMessage.SetMessage("Weapon Changed!");
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Goblin Mace Equiped!");
             UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
         }
         else if (btn == btn_2)
         {
             DataManager.Instance.CurrentWeaponSkinIndex = 1;
-            PrefabManager.Instance.UI_ToastMessage.SetMessage("Weapon Changed!");
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Goblin Staff Equiped!");
             UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
         }
         else if (btn == btn_3)
         {
             DataManager.Instance.CurrentWeaponSkinIndex = 2;
-            PrefabManager.Instance.UI_ToastMessage.SetMessage("Weapon Changed!");
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Axe Equiped!");
             UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
         }
         else if (btn == btn_4)
         {
             DataManager.Instance.CurrentWeaponSkinIndex = 3;
-            PrefabManager.Instance.UI_ToastMessage.SetMessage("Weapon Changed!");
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Human Mace Equiped!");
             UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
         }
         else if (btn == btn_5)
         {
             DataManager.Instance.CurrentWeaponSkinIndex = 4;
-            PrefabManager.Instance.UI_ToastMessage.SetMessage("Weapon Changed!");
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Undead Staff Changed!");
             UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
         }
         else if (btn == btn_6)
         {
             DataManager.Instance.CurrentWeaponSkinIndex = 5;
-            PrefabManager.Instance.UI_ToastMessage.SetMessage("Weapon Changed!");
+            PrefabManager.Instance.UI_ToastMessage.SetMessage("Wood Sword Equiped!");
             UIManager.Instance.ShowUI(UIManager.UIType.UI_ToastMessage);
         }
 

@@ -23,6 +23,8 @@ public class Enemy_Child : MonoBehaviour
     [ReadOnly] public int indexNumber = -1;
     [ReadOnly] public int lastIndexNumber = -1;
 
+    private float ontriggerStayTimer = 0f;
+
     private void Awake()
     {
         enemyBase = GetComponentInParent<Enemy>();
@@ -45,12 +47,14 @@ public class Enemy_Child : MonoBehaviour
     private void OnEnable()
     {
         bodyTrigger.OnTriggerEnterAction += OnTriggerEnterAction_Body;
+        bodyTrigger.OnTriggerStayAction += OnTriggerStayAction_Body;
         bodyTrigger.OnTriggerExitAction += OnTriggerExitAction_Body;
     }
 
     private void OnDisable()
     {
         bodyTrigger.OnTriggerEnterAction -= OnTriggerEnterAction_Body;
+        bodyTrigger.OnTriggerStayAction -= OnTriggerStayAction_Body;
         bodyTrigger.OnTriggerExitAction -= OnTriggerExitAction_Body;
     }
 
@@ -135,6 +139,24 @@ public class Enemy_Child : MonoBehaviour
         if (other.transform.CompareTag(CommonDefine.TAG_Player))
         {
             PlayerCollision?.Invoke();
+
+            ontriggerStayTimer = 0f;
+        }
+
+    }
+
+    private void OnTriggerStayAction_Body(Collider other)
+    {
+        if (other.transform.CompareTag(CommonDefine.TAG_Player))
+        {
+            //혹시나 뚫고 들어간 경우를 대비해서...
+            if (ontriggerStayTimer > 1.5f)
+            {
+                PlayerCollision?.Invoke();
+                ontriggerStayTimer = 0f;
+            }
+
+            ontriggerStayTimer += Time.deltaTime;
         }
     }
 
@@ -143,6 +165,11 @@ public class Enemy_Child : MonoBehaviour
         if (other.transform.CompareTag(CommonDefine.TAG_Floor))
         {
             isGrounded = false;
+        }
+
+        if (other.transform.CompareTag(CommonDefine.TAG_Player))
+        {
+            ontriggerStayTimer = 0f;
         }
     }
 }
