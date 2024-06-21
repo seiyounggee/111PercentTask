@@ -225,6 +225,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
                 if (CurrentRoundIndex == LastRoundIndex)
                 {
                     //마지막 놈이 죽은 경우 Loop 빠져나가자
+                    yield return new WaitForSeconds(3f);
                     CurrentGameEndType = CommonDefine.GameEndType.GameClear;
                     break;
                 }
@@ -295,5 +296,19 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
             PrefabManager.Instance.UI_InGame.UpdateScore(GameScore.ToString());
         }
+    }
+
+    public Enemy_Child CurrentEnemyChild()
+    {
+        if (currentEnemy != null)
+        {
+            for (int i = currentEnemy.EnemyChildList.Count - 1; i >= 0; --i)
+            {
+                if (currentEnemy.EnemyChildList[i].isDeactivated == false)
+                    return currentEnemy.EnemyChildList[i];
+            }
+        }
+
+        return null;
     }
 }

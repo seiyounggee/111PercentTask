@@ -678,6 +678,12 @@ MonoBehaviour:
   - {fileID: 1540706268706436282, guid: 92c6bc42d67ed8b469a35b3107f28b8f, type: 3}
   - {fileID: 522176788501377982, guid: 92031e7ec6d49684a880035e931ef059, type: 3}
   - {fileID: 2710757657369903770, guid: a9a0d447ef6e2c344ab63c0ee80cf118, type: 3}
+  - {fileID: 1536515949034820749, guid: 88bdf5173477a01479ebf96d157f9f57, type: 3}
+  - {fileID: 1167260706030852600, guid: 29d90005de2d733448c9b7d13db68708, type: 3}
+  - {fileID: 5377622859363659913, guid: 6da81a39e57145346a09578048487b4a, type: 3}
+  - {fileID: 1057945862719790698, guid: 9e95cd93fa8651a48aa61806a01fc1b2, type: 3}
+  - {fileID: 2276509148906484933, guid: 197efbb60a704cb4e9b5e0d40f776d0e, type: 3}
+  - {fileID: 2833152527523040147, guid: f01d1ae38fe612e43b9a94ee405040eb, type: 3}
   PlayerSkinPrefabList:
   - {fileID: 1554878986191708345, guid: faba1841ad748e544a9fdb44ce1f1e87, type: 3}
   - {fileID: 5094706579049366427, guid: 0137f67914305c7488afe7e11dedb971, type: 3}
@@ -729,6 +735,6 @@ MonoBehaviour:
   Effect_ExplosionNovaFire: {fileID: 5016852406723410596, guid: 8ab43bd3a285b2e4fa3a895bdbf9ba4d, type: 3}
   Effect_GibletExplodeStone: {fileID: 7373243705534047242, guid: b9d0d21c310e1a744ba502e376395606, type: 3}
   Effect_SwordSlashThickRed: {fileID: 6252778529602162175, guid: 865891b5f550fab469efa82c44332906, type: 3}
-  Effect_ShieldBlue: {fileID: 5053285379462588701, guid: 7e2ef61abea134c429fb691c988cc923, type: 3}
+  Effect_LaserBeamRed: {fileID: 155510759632876812, guid: 1113bcc3242d7bf4f80edfab2461f29b, type: 3}
   coinTexture: {fileID: 2800000, guid: 33effd6735e414dc7b70ded5e8bb47f8, type: 3}
   gemTexture: {fileID: 2800000, guid: 6d034811652a84633bc8c63d22ce5574, type: 3}

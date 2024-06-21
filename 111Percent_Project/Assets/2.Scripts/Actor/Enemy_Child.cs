@@ -6,13 +6,14 @@ using UnityEngine;
 public class Enemy_Child : MonoBehaviour
 {
     [SerializeField] Trigger_Callback bodyTrigger = null;
-    [SerializeField] MeshRenderer meshRenderer = null;
+    [SerializeField] Renderer meshRenderer = null;
     
     private Enemy enemyBase = null;
     [ReadOnly] public Material meshMaterial = null;
 
     [ReadOnly] public bool isGrounded = false;
     [ReadOnly] public bool isDeactivated = false;
+    private bool isWaitingForDeactivation = false; //연출용..
 
     [ReadOnly] public int currHealth = 5;
     [ReadOnly] public int maxHealth = 5;
@@ -27,6 +28,8 @@ public class Enemy_Child : MonoBehaviour
     {
         enemyBase = GetComponentInParent<Enemy>();
         meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+            meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
         bodyTrigger = GetComponent<Trigger_Callback>();
         isDeactivated = false;
@@ -56,6 +59,8 @@ public class Enemy_Child : MonoBehaviour
     {
         maxHealth = hp;
         currHealth = maxHealth;
+
+        isWaitingForDeactivation = false;
     }
 
     public void SetIndexNumber(int myIndex, int lastIndex)
@@ -67,7 +72,30 @@ public class Enemy_Child : MonoBehaviour
 
     private void Deactivate()
     {
+        isWaitingForDeactivation = true;
+
+        //if (IsBoss() == false)
+        if (false)
+        {
+            //일반은 바로 죽여주자
+            Invoke(nameof(InvokeDeactivation), 0f);
+        }
+        else
+        {
+            //보스는 연출 넣어주자
+            Time.timeScale = 0f;
+            InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_MegaExplosionYellow, transform.position, Quaternion.identity);
+            Invoke(nameof(InvokeDeactivation), 4f);
+        }
+    }
+
+    private void InvokeDeactivation()
+    {
+        Debug.Log("InvokeDeactivation!");
+
         isDeactivated = true;
+        isWaitingForDeactivation = false;
+        Time.timeScale = 1f;
         gameObject.SafeSetActive(false);
 
         SoundManager.Instance.PlaySound(SoundManager.SoundClip.Ingame_EnemyDeactivation);
@@ -75,6 +103,9 @@ public class Enemy_Child : MonoBehaviour
 
     public void GetHit(int dmg = 10)
     {
+        if (isWaitingForDeactivation == true)
+            return;
+
         if (isDeactivated == true)
             return;
 
@@ -109,6 +140,14 @@ public class Enemy_Child : MonoBehaviour
             var newColor = new Color(colorValue, colorValue, colorValue);
             meshMaterial.SetColor("_BaseColor", newColor);
         }
+    }
+
+    public bool IsBoss()
+    {
+        if (indexNumber != -1 && indexNumber == 0) //맨마지막..
+            return true;
+        else
+            return false;
     }
 
     public void GetBlocked(float strength_percentage)

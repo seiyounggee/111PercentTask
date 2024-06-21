@@ -31,6 +31,7 @@ public partial class InGameManager
         Effect_ExplosionNovaFire,
         Effect_GibletExplodeStone,
         Effect_SwordSlashThickRed,
+        Effect_LaserBeamRed,
     }
 
     private const int INITIAL_POOL_NUMBER = 10;
@@ -58,6 +59,7 @@ public partial class InGameManager
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_ExplosionNovaFire, PooledType.Effect_ExplosionNovaFire);
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_GibletExplodeStone, PooledType.Effect_GibletExplodeStone);
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_SwordSlashThickRed, PooledType.Effect_SwordSlashThickRed);
+        PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_LaserBeamRed, PooledType.Effect_LaserBeamRed);
               
     }
 
@@ -187,6 +189,9 @@ public partial class InGameManager
                                 break;
                             case PooledType.Effect_SwordSlashThickRed:
                                 PoolObj(true, PrefabManager.Instance.Effect_SwordSlashThickRed, type);
+                                break;
+                            case PooledType.Effect_LaserBeamRed:
+                                PoolObj(true, PrefabManager.Instance.Effect_LaserBeamRed, type);
                                 break;
                             default:
                                 break;

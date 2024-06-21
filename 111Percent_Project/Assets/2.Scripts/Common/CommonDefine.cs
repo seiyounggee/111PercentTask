@@ -70,5 +70,6 @@ public class CommonDefine
         DecreaseDefenseCooltime,  //디펜 쿨타임 감소
         IncreaseAttackRange,
         IncreaseDefenseRange,
+        Laser,
     }
 }

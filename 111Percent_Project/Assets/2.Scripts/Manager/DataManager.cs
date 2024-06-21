@@ -27,7 +27,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 0, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 20, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 0, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 30, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 0, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 40, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 0, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_10" , hp = 400, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 0, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_01" , hp = 400, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -44,7 +44,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 1, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 40, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 1, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 50, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 1, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 60, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 1, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_12" , hp = 600, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 1, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_02" , hp = 600, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -61,7 +61,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 2, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 100, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 2, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 90, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 2, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 100, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 2, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_07" , hp = 800, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 2, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_03" , hp = 800, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -78,7 +78,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 3, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 140, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 3, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 160, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 3, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 200, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 3, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_08" , hp = 1000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 3, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_04" , hp = 1000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -96,7 +96,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 4, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 180, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
                     new RoundData(){ stageID = 4, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 200, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 8.5f },
                     new RoundData(){ stageID = 4, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 240, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 4, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_09" , hp = 1200, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 4, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_05" , hp = 1200, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -113,7 +113,7 @@ public class DataManager : MonoSingleton<DataManager>
                     new RoundData(){ stageID = 5, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 140, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 7f },
                     new RoundData(){ stageID = 5, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_16" , hp = 150, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 2.5f, jumpUpSpeed_PlayerDefense = 6f },
                     new RoundData(){ stageID = 5, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_17" , hp = 270, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 5f },
-                    new RoundData(){ stageID = 5, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_11" , hp = 2000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 4.5f },
+                    new RoundData(){ stageID = 5, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_06" , hp = 2000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2f, jumpUpSpeed_PlayerDefense = 4.5f },
                 }
             },
 
@@ -123,10 +123,11 @@ public class DataManager : MonoSingleton<DataManager>
         {
             new AbilityData() {  id = 1, type = (int)CommonDefine.Ability.HealHp, name = "Heal Hp", desc = "Heals 1 Health Point" },
             new AbilityData() {  id = 2, type = (int)CommonDefine.Ability.IncreaseAttack, name = "Increase Attack", desc = "Increase Attack + 10%" },
-            new AbilityData() {  id = 3, type = (int)CommonDefine.Ability.IncreaseSpeed, name = "Increase Speed", desc = "Increase Speed + 5%" },
+            new AbilityData() {  id = 3, type = (int)CommonDefine.Ability.IncreaseSpeed, name = "Increase Speed", desc = "Increase Movement Speed + 5%" },
             new AbilityData() {  id = 4, type = (int)CommonDefine.Ability.DecreaseDefenseCooltime, name = "Decrease Defense Cooltime", desc = "Cooltime - 25%" },
             new AbilityData() {  id = 5, type = (int)CommonDefine.Ability.IncreaseAttackRange, name = "Increase Attack Range", desc = "Attack Range + 15%" },
             new AbilityData() {  id = 6, type = (int)CommonDefine.Ability.IncreaseDefenseRange, name = "Increase Defense Range", desc = "Defense Range + 10%" },
+            new AbilityData() {  id = 7, type = (int)CommonDefine.Ability.Laser, name = "Laser", desc = "Laser Attack +20%" }
         };
     }
 

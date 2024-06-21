@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Agent
+public partial class Player : Agent
 {
     [SerializeField] Animator anim = null;
     [SerializeField] Trigger_Callback bodyTrigger = null;
     [SerializeField] Trigger_Callback attackTrigger = null;
     [SerializeField] Trigger_Callback defenseTrigger = null;
+    [SerializeField] Transform laserPoint = null;
 
     private Transform rightHand = null;
     private Transform leftHand = null;
@@ -42,14 +43,6 @@ public class Player : Agent
 
     public enum Type { None, IngamePlayer, OutgamePlayer}
     public Type CurrentType { get; set; }
-
-    private List<DataManager.AbilityData> abilityObtained = new List<DataManager.AbilityData>();
-
-    private float abilityBuff_IncreaseAttack = 0f;
-    private float abilityBuff_IncreaseSpeed = 0f;
-    private float abilityBuff_DecreaseDefenseCooltime = 0f;
-    private float abilityBuff_IncreaseAttackRange = 0f;
-    private float abilityBuff_IncreaseDefenseRange = 0f;
 
     private void Awake()
     {
@@ -107,6 +100,7 @@ public class Player : Agent
         abilityBuff_DecreaseDefenseCooltime = 0f;
         abilityBuff_IncreaseAttackRange = 0f;
         abilityBuff_IncreaseDefenseRange = 0f;
+        abilityBuff_LaserAttack = 0;
     }
 
     public void SetSkin(GameObject skin = null)
@@ -264,31 +258,36 @@ public class Player : Agent
     {
         if (CurrentType == Type.IngamePlayer)
         {
-
-            if (jumpUpVelocity.y > 0)
-            {
-                this.transform.position += Vector3.up * Time.fixedDeltaTime * jumpUpVelocity.y;
-
-                jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * 10f;
-                if (jumpUpVelocity.y <= 0)
-                {
-                    jumpUpVelocity.y = 0;
-                }
-            }
-
-            if (isGrounded == false && jumpUpVelocity.y <= 0)
-            {
-                this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
-                fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 20f;
-
-                //¹Ù´Ú ¶Õ°í ¸ø°¡°Ô...
-                if (this.transform.position.y <= 0f)
-                    transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-            }
-
-            if (defenseInputCooltimeCounter > 0)
-                defenseInputCooltimeCounter -= Time.fixedDeltaTime;
+            FixedUpdate_Movement();
+            FixedUpdate_Ability();
         }
+    }
+
+    private void FixedUpdate_Movement()
+    {
+        if (jumpUpVelocity.y > 0)
+        {
+            this.transform.position += Vector3.up * Time.fixedDeltaTime * jumpUpVelocity.y;
+
+            jumpUpVelocity -= Vector3.up * Time.fixedDeltaTime * 10f;
+            if (jumpUpVelocity.y <= 0)
+            {
+                jumpUpVelocity.y = 0;
+            }
+        }
+
+        if (isGrounded == false && jumpUpVelocity.y <= 0)
+        {
+            this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
+            fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 20f;
+
+            //¹Ù´Ú ¶Õ°í ¸ø°¡°Ô...
+            if (this.transform.position.y <= 0f)
+                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        }
+
+        if (defenseInputCooltimeCounter > 0)
+            defenseInputCooltimeCounter -= Time.fixedDeltaTime;
     }
 
     public void GetHit()
@@ -430,56 +429,7 @@ public class Player : Agent
         return defenseTrigger.SafeIsActive();
     }
 
-    public void GetAbility(DataManager.AbilityData abilityData)
-    {
-        abilityObtained.Add(abilityData);
 
-        switch ((CommonDefine.Ability)abilityData.type)
-        {
-            case CommonDefine.Ability.HealHp:
-                {
-                    if (currHealth > 0 && currHealth < maxHealth)
-                    {
-                        ++currHealth;
-                        PrefabManager.Instance.UI_InGame.UpdateHealthObj();
-                    }
-                }
-                break;
-            case CommonDefine.Ability.IncreaseAttack:
-                {
-                    abilityBuff_IncreaseAttack += 0.1f; //10%Áõ°¡
-                }
-                break;
-            case CommonDefine.Ability.IncreaseSpeed:
-                {
-                    abilityBuff_IncreaseSpeed += 0.05f;
-                }
-                break;
-            case CommonDefine.Ability.DecreaseDefenseCooltime:
-                {
-                    abilityBuff_DecreaseDefenseCooltime += 0.2f;
-
-                    defenseInputCooltime = 3 - abilityBuff_DecreaseDefenseCooltime;
-
-                    defenseInputCooltime = Mathf.Clamp(defenseInputCooltime, 2f, 3f);
-                }
-                break;
-            case CommonDefine.Ability.IncreaseAttackRange:
-                {
-                    abilityBuff_IncreaseAttackRange += 0.15f;
-
-                    attackTrigger.transform.localScale = ( 1 + abilityBuff_IncreaseAttackRange )* Vector3.one;
-                }
-                break;
-            case CommonDefine.Ability.IncreaseDefenseRange:
-                {
-                    abilityBuff_IncreaseDefenseRange += 0.1f;
-
-                    defenseTrigger.transform.localScale = (1 + abilityBuff_IncreaseDefenseRange) * Vector3.one;
-                }
-                break;
-        }
-    }
 
 
 #if UNITY_EDITOR

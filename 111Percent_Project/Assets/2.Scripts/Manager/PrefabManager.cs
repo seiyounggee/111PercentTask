@@ -114,6 +114,7 @@ public class PrefabManager : MonoSingleton<PrefabManager>
     public GameObject Effect_ExplosionNovaFire = null;
     public GameObject Effect_GibletExplodeStone = null;
     public GameObject Effect_SwordSlashThickRed = null;
+    public GameObject Effect_LaserBeamRed = null;
 
     #endregion
 

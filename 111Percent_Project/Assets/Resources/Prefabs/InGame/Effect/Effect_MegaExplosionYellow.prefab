@@ -43461,6 +43461,7 @@ GameObject:
   - component: {fileID: 1375282144266392365}
   - component: {fileID: 5516472848300747038}
   - component: {fileID: 4934281247761011711}
+  - component: {fileID: 7460332247268749686}
   m_Layer: 0
   m_Name: Effect_MegaExplosionYellow
   m_TagString: Untagged
@@ -48328,3 +48329,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: 0
   activeFalseTime: 3
+--- !u!114 &7460332247268749686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205834649398507972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7daf88c68b3559a4b88001abf1a5497b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
