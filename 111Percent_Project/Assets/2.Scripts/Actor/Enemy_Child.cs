@@ -13,7 +13,6 @@ public class Enemy_Child : MonoBehaviour
 
     [ReadOnly] public bool isGrounded = false;
     [ReadOnly] public bool isDeactivated = false;
-    private bool isWaitingForDeactivation = false; //연출용..
 
     [ReadOnly] public int currHealth = 5;
     [ReadOnly] public int maxHealth = 5;
@@ -59,8 +58,6 @@ public class Enemy_Child : MonoBehaviour
     {
         maxHealth = hp;
         currHealth = maxHealth;
-
-        isWaitingForDeactivation = false;
     }
 
     public void SetIndexNumber(int myIndex, int lastIndex)
@@ -72,40 +69,13 @@ public class Enemy_Child : MonoBehaviour
 
     private void Deactivate()
     {
-        isWaitingForDeactivation = true;
-
-        //if (IsBoss() == false)
-        if (false)
-        {
-            //일반은 바로 죽여주자
-            Invoke(nameof(InvokeDeactivation), 0f);
-        }
-        else
-        {
-            //보스는 연출 넣어주자
-            Time.timeScale = 0f;
-            InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_MegaExplosionYellow, transform.position, Quaternion.identity);
-            Invoke(nameof(InvokeDeactivation), 4f);
-        }
-    }
-
-    private void InvokeDeactivation()
-    {
-        Debug.Log("InvokeDeactivation!");
-
         isDeactivated = true;
-        isWaitingForDeactivation = false;
-        Time.timeScale = 1f;
         gameObject.SafeSetActive(false);
-
         SoundManager.Instance.PlaySound(SoundManager.SoundClip.Ingame_EnemyDeactivation);
     }
 
     public void GetHit(int dmg = 10)
     {
-        if (isWaitingForDeactivation == true)
-            return;
-
         if (isDeactivated == true)
             return;
 
