@@ -304,7 +304,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
                     //다음 스테이지로...!
                     var currStageID = DataManager.Instance.GetSavedStageID();
-                    var nextStageID = ++currStageID;
+                    var nextStageID = currStageID + 1;
                     DataManager.Instance.SaveStageID(nextStageID);
 
                     if (currStageID == DataManager.Instance.GetLastStageID())
