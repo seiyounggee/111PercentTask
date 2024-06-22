@@ -44,29 +44,29 @@ public partial class Player
                     var additionalDmg = 0;
                     var upgradeData = DataManager.Instance.GetCurrentUpgradeData();
                     if (upgradeData != null)
-                        additionalDmg += upgradeData.damageValue / 2;
+                        additionalDmg += upgradeData.damageValue;
 
                     laserScript.Setup(laserPoint, enemyChild.transform);
 
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
+                            enemyChild.GetHit(30 + 30 * abilityBuff_LaserAttack + additionalDmg);
                     }, 0.1f, "laserAttack_1");
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
+                            enemyChild.GetHit(30 + 30 * abilityBuff_LaserAttack + additionalDmg);
                     }, 0.7f, "laserAttack_2");
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
+                            enemyChild.GetHit(30 + 30 * abilityBuff_LaserAttack + additionalDmg);
                     }, 1.3f, "laserAttack_3");
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
+                            enemyChild.GetHit(30 + 30 * abilityBuff_LaserAttack + additionalDmg);
                     }, 2f, "laserAttack_4");
                 }
             }
@@ -125,7 +125,25 @@ public partial class Player
 
                     //지나간 bullet은 처리x
                     if (enemyChild != null && Vector3.Distance(missileSpawnedList[i].gameObject.transform.position, enemyChild.transform.position) < 5f)
-                        enemyChild.GetHit(3 * abilityBuff_Missile + additionalDmg);
+                    {
+                        var totalDmg = 30 * abilityBuff_Missile + additionalDmg;
+                        enemyChild.GetHit(totalDmg);
+
+                        var dmgTxt = InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_DamageText, missileSpawnedList[i].gameObject.transform.position, Quaternion.identity);
+                        if (dmgTxt != null)
+                        {
+                            dmgTxt.TryGetComponent<Effect_DamageText>(out var dmgScript);
+                            if (dmgScript != null)
+                            {
+                                var randomVel = new Vector3(
+                                                Random.Range(0.1f, 2f) * (Random.value < 0.5f ? -1 : 1),
+                                                Random.Range(5f, 10f),
+                                                0f
+                                );
+                                dmgScript.Setup(missileSpawnedList[i].gameObject.transform.position, randomVel, totalDmg.ToString());
+                            }
+                        }
+                    }
 
                     missileSpawnedList.Remove(missileSpawnedList[i]);
                 }
@@ -139,6 +157,10 @@ public partial class Player
     public void GetAbility(DataManager.AbilityData abilityData)
     {
         abilityObtained.Add(abilityData);
+
+#if UNITY_EDITOR
+        Debug.Log("GetAbility >>" + (CommonDefine.Ability)abilityData.type);
+#endif
 
         switch ((CommonDefine.Ability)abilityData.type)
         {

@@ -3,46 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 
 public class UI_Common : UIBase
 {
-    [SerializeField] GameObject panelYesNo = null;
-    [SerializeField] Text txt_panelYesNo = null;
-    [SerializeField] Button btnYes_panelYesNo = null;
-    [SerializeField] Button btnNo_panelYesNo = null;
+    [SerializeField] Button btnOk = null;
+    [SerializeField] Button btnExit = null;
+    [SerializeField] TextMeshProUGUI txtTitle;
+    [SerializeField] TextMeshProUGUI txtDesc;
 
     public Action action_panelYesNo = null;
 
     private void Awake()
     {
-        btnYes_panelYesNo.SafeSetButton(OnClickBtnYes_panelYesNo);
-        btnNo_panelYesNo.SafeSetButton(OnClickBtnNo_panelYesNo);
+        btnOk.SafeSetButton(OnClickBtn);
+        btnExit.SafeSetButton(OnClickBtn);
     }
 
-    public void ActivatePanelYesNo(Action action, string msg = "")
+    public void Setup(string title, string desc)
     {
-        gameObject.SafeSetActive(true);
-
-        action_panelYesNo = action;
-        txt_panelYesNo.text = msg;
-        panelYesNo.SafeSetActive(true);
+        txtTitle.SafeSetText(title);
+        txtDesc.SafeSetText(desc);
     }
 
-    public void DeactivatePanelYesNo()
+    private void OnClickBtn(Button btn)
     {
-        action_panelYesNo = null;
-        panelYesNo.SafeSetActive(false);
-    }
-
-    private void OnClickBtnYes_panelYesNo()
-    {
-        action_panelYesNo?.Invoke();
-
-        DeactivatePanelYesNo();
-    }
-
-    private void OnClickBtnNo_panelYesNo()
-    {
-        DeactivatePanelYesNo();
+        if (btn == btnOk)
+        {
+            Hide();
+        }
+        else if (btn == btnExit)
+        {
+            Hide();
+        }
     }
 }

@@ -286,20 +286,36 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         {
             case CommonDefine.GameEndType.GameOver:
                 {
-                    DataManager.Instance.Coin += GameScore / 20;
-                    PrefabManager.Instance.UI_OutGame.RegisterTween = true;
+                    if (GameScore > 0)
+                    {
+                        DataManager.Instance.Coin += GameScore / 20;
+                        PrefabManager.Instance.UI_OutGame.RegisterTween = true;
+                    }
                 }
                 break;
 
             case CommonDefine.GameEndType.GameClear:
                 {
-                    DataManager.Instance.Coin += GameScore / 15;
-                    PrefabManager.Instance.UI_OutGame.RegisterTween = true;
+                    if (GameScore > 0)
+                    {
+                        DataManager.Instance.Coin += GameScore / 15;
+                        PrefabManager.Instance.UI_OutGame.RegisterTween = true;
+                    }
 
                     //다음 스테이지로...!
                     var currStageID = DataManager.Instance.GetSavedStageID();
                     var nextStageID = ++currStageID;
                     DataManager.Instance.SaveStageID(nextStageID);
+
+                    if (currStageID == DataManager.Instance.GetLastStageID())
+                    {
+                        DataManager.Instance.IsGameClear = 1;
+                        PrefabManager.Instance.UI_OutGame.RegisterGameClear = true;
+                    }
+                    else
+                    {
+                        PrefabManager.Instance.UI_OutGame.NewStageUnlocked = true;
+                    }
                 }
                 break;
         }

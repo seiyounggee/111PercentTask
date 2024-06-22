@@ -23,12 +23,12 @@ public class DataManager : MonoSingleton<DataManager>
                 stageMapAssetName = "Map_SF_Bld_Preset_Elven_Castle_01",
                 RoundDataList = new List<RoundData>()
                 {
-                    new RoundData(){ stageID = 0, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_05" , hp = 20, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 4f, jumpUpSpeed_PlayerDefense = 10f},
-                    new RoundData(){ stageID = 0, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 15, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 9.5f },
-                    new RoundData(){ stageID = 0, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 20, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 9f },
-                    new RoundData(){ stageID = 0, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 30, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
-                    new RoundData(){ stageID = 0, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 40, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 0, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_01" , hp = 400, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 0, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_05" , hp = 200, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 4f, jumpUpSpeed_PlayerDefense = 10f},
+                    new RoundData(){ stageID = 0, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 200, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 9.5f },
+                    new RoundData(){ stageID = 0, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 250, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 9f },
+                    new RoundData(){ stageID = 0, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 350, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
+                    new RoundData(){ stageID = 0, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 450, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 0, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_01" , hp = 5000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -40,12 +40,12 @@ public class DataManager : MonoSingleton<DataManager>
                 stageMapAssetName = "Map_SF_Bld_Preset_Elven_Castle_03",
                 RoundDataList = new List<RoundData>()
                 {
-                    new RoundData(){ stageID = 1, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_17" , hp = 10, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 4f, jumpUpSpeed_PlayerDefense = 10f},
-                    new RoundData(){ stageID = 1, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 30, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 9.5f },
-                    new RoundData(){ stageID = 1, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 40, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 9f },
-                    new RoundData(){ stageID = 1, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 50, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
-                    new RoundData(){ stageID = 1, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 60, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 1, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_02" , hp = 600, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 1, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_17" , hp = 200, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 4f, jumpUpSpeed_PlayerDefense = 10f},
+                    new RoundData(){ stageID = 1, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 700, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 9.5f },
+                    new RoundData(){ stageID = 1, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 900, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 9f },
+                    new RoundData(){ stageID = 1, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 1200, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
+                    new RoundData(){ stageID = 1, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 900, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 1, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_02" , hp = 8000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -57,12 +57,12 @@ public class DataManager : MonoSingleton<DataManager>
                 stageMapAssetName = "Map_SF_Bld_Preset_Goblin_Castle_03",
                 RoundDataList = new List<RoundData>()
                 {
-                    new RoundData(){ stageID = 2, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_05" , hp = 250, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 4f, jumpUpSpeed_PlayerDefense = 10f},
-                    new RoundData(){ stageID = 2, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 120, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 9.5f },
-                    new RoundData(){ stageID = 2, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 100, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
-                    new RoundData(){ stageID = 2, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 90, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
-                    new RoundData(){ stageID = 2, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 100, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 2, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_03" , hp = 800, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 2, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_05" , hp = 2500, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 4f, jumpUpSpeed_PlayerDefense = 10f},
+                    new RoundData(){ stageID = 2, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 2000, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 9.5f },
+                    new RoundData(){ stageID = 2, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 2500, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 9f },
+                    new RoundData(){ stageID = 2, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 2000, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
+                    new RoundData(){ stageID = 2, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 1500, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 2, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_03" , hp = 12000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -74,12 +74,12 @@ public class DataManager : MonoSingleton<DataManager>
                 stageMapAssetName = "Map_SF_Bld_Preset_Human_Castle_01",
                 RoundDataList = new List<RoundData>()
                 {
-                    new RoundData(){ stageID = 3, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_19" , hp = 200, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 10f},
-                    new RoundData(){ stageID = 3, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 120, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.2f, jumpUpSpeed_PlayerDefense = 9.5f },
-                    new RoundData(){ stageID = 3, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 140, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.1f, jumpUpSpeed_PlayerDefense = 9f },
-                    new RoundData(){ stageID = 3, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 160, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
-                    new RoundData(){ stageID = 3, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 200, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 3, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_04" , hp = 1000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 3, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_19" , hp = 2200, fallDownSpeed = 15F, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 10f},
+                    new RoundData(){ stageID = 3, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_04" , hp = 4000, fallDownSpeed = 16f, jumpUpSpeed_PlayerCollision = 3.2f, jumpUpSpeed_PlayerDefense = 9.5f },
+                    new RoundData(){ stageID = 3, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_02" , hp = 2600, fallDownSpeed = 17f, jumpUpSpeed_PlayerCollision = 3.1f, jumpUpSpeed_PlayerDefense = 9f },
+                    new RoundData(){ stageID = 3, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 2400, fallDownSpeed = 18f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8.5f },
+                    new RoundData(){ stageID = 3, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 2800, fallDownSpeed = 19f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 3, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_04" , hp = 18000, fallDownSpeed = 20f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -92,12 +92,12 @@ public class DataManager : MonoSingleton<DataManager>
                 stageMapAssetName = "Map_SF_Bld_Preset_Human_Castle_02",
                 RoundDataList = new List<RoundData>()
                 {
-                    new RoundData(){ stageID = 4, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_18" , hp = 100, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 10f},
-                    new RoundData(){ stageID = 4, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_19" , hp = 160, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.4f, jumpUpSpeed_PlayerDefense = 9.5f },
-                    new RoundData(){ stageID = 4, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 180, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 9f },
-                    new RoundData(){ stageID = 4, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 200, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3.2f, jumpUpSpeed_PlayerDefense = 8.5f },
-                    new RoundData(){ stageID = 4, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 240, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
-                    new RoundData(){ stageID = 4, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_05" , hp = 1200, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 4, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_18" , hp = 2000, fallDownSpeed = 15F, jumpUpSpeed_PlayerCollision = 3.5f, jumpUpSpeed_PlayerDefense = 10f},
+                    new RoundData(){ stageID = 4, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_19" , hp = 3000, fallDownSpeed = 16f, jumpUpSpeed_PlayerCollision = 3.4f, jumpUpSpeed_PlayerDefense = 9.5f },
+                    new RoundData(){ stageID = 4, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 4000, fallDownSpeed = 17.5f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 9f },
+                    new RoundData(){ stageID = 4, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 3000, fallDownSpeed = 18.5f, jumpUpSpeed_PlayerCollision = 3.2f, jumpUpSpeed_PlayerDefense = 8.5f },
+                    new RoundData(){ stageID = 4, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 3000, fallDownSpeed = 19.5f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
+                    new RoundData(){ stageID = 4, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_05" , hp = 30000, fallDownSpeed = 22f, jumpUpSpeed_PlayerCollision = 3f, jumpUpSpeed_PlayerDefense = 8f },
                 }
             },
 
@@ -109,12 +109,14 @@ public class DataManager : MonoSingleton<DataManager>
                 stageMapAssetName = "Map_SF_Bld_Preset_Undead_Castle_03",
                 RoundDataList = new List<RoundData>()
                 {
-                    new RoundData(){ stageID = 5, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 120, fallDownSpeed = 10f, jumpUpSpeed_PlayerCollision = 3.4f, jumpUpSpeed_PlayerDefense = 8.5f},
-                    new RoundData(){ stageID = 5, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 130, fallDownSpeed = 11f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 7.5f },
-                    new RoundData(){ stageID = 5, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 140, fallDownSpeed = 12f, jumpUpSpeed_PlayerCollision = 3.2f, jumpUpSpeed_PlayerDefense = 7f },
-                    new RoundData(){ stageID = 5, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_16" , hp = 150, fallDownSpeed = 13f, jumpUpSpeed_PlayerCollision = 3.1f, jumpUpSpeed_PlayerDefense = 6f },
-                    new RoundData(){ stageID = 5, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_17" , hp = 270, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 3.0f, jumpUpSpeed_PlayerDefense = 5f },
-                    new RoundData(){ stageID = 5, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_Boss_06" , hp = 2000, fallDownSpeed = 14f, jumpUpSpeed_PlayerCollision = 2.9f, jumpUpSpeed_PlayerDefense = 4.5f },
+                    new RoundData(){ stageID = 5, roundNumber = 1,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 5000, fallDownSpeed = 15F, jumpUpSpeed_PlayerCollision = 3.4f, jumpUpSpeed_PlayerDefense = 8.5f},
+                    new RoundData(){ stageID = 5, roundNumber = 2,  enemyType = 0, enemyPrefabName = "Enemy_03" , hp = 5500, fallDownSpeed = 18f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 7.5f },
+                    new RoundData(){ stageID = 5, roundNumber = 3,  enemyType = 0, enemyPrefabName = "Enemy_01" , hp = 6000, fallDownSpeed = 18f, jumpUpSpeed_PlayerCollision = 3.3f, jumpUpSpeed_PlayerDefense = 7.5f },
+                    new RoundData(){ stageID = 5, roundNumber = 4,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 3000, fallDownSpeed = 19f, jumpUpSpeed_PlayerCollision = 3.2f, jumpUpSpeed_PlayerDefense = 7f },
+                    new RoundData(){ stageID = 5, roundNumber = 5,  enemyType = 0, enemyPrefabName = "Enemy_16" , hp = 3000, fallDownSpeed = 19.5f, jumpUpSpeed_PlayerCollision = 3.1f, jumpUpSpeed_PlayerDefense = 6f },
+                    new RoundData(){ stageID = 5, roundNumber = 6,  enemyType = 0, enemyPrefabName = "Enemy_17" , hp = 4000, fallDownSpeed = 21f, jumpUpSpeed_PlayerCollision = 3.0f, jumpUpSpeed_PlayerDefense = 5f },
+                    new RoundData(){ stageID = 5, roundNumber = 7,  enemyType = 0, enemyPrefabName = "Enemy_15" , hp = 5000, fallDownSpeed = 21.2f, jumpUpSpeed_PlayerCollision = 3.0f, jumpUpSpeed_PlayerDefense = 5f },
+                    new RoundData(){ stageID = 5, roundNumber = 8,  enemyType = 0, enemyPrefabName = "Enemy_Boss_06" , hp = 50000, fallDownSpeed = 24f, jumpUpSpeed_PlayerCollision = 2.9f, jumpUpSpeed_PlayerDefense = 4.5f },
                 }
             },
 
@@ -135,16 +137,16 @@ public class DataManager : MonoSingleton<DataManager>
         UpgradeDataList = new List<UpgradeData>()
         {
             new UpgradeData(){ level = 0, cost = 0, damageValue = 0 },
-            new UpgradeData(){ level = 1, cost = 2000, damageValue = 2 },
-            new UpgradeData(){ level = 2, cost = 3000, damageValue = 3 },
-            new UpgradeData(){ level = 3, cost = 4000, damageValue = 4 },
-            new UpgradeData(){ level = 4, cost = 5000, damageValue = 5 },
-            new UpgradeData(){ level = 5, cost = 6000, damageValue = 7 },
-            new UpgradeData(){ level = 6, cost = 7000, damageValue = 9 },
-            new UpgradeData(){ level = 7, cost = 8000, damageValue = 11 },
-            new UpgradeData(){ level = 8, cost = 9000, damageValue = 13 },
-            new UpgradeData(){ level = 9, cost = 10000, damageValue = 15 },
-            new UpgradeData(){ level = 10, cost = 11000, damageValue = 20 },
+            new UpgradeData(){ level = 1, cost = 2000, damageValue = 20 },
+            new UpgradeData(){ level = 2, cost = 3000, damageValue = 30 },
+            new UpgradeData(){ level = 3, cost = 4000, damageValue = 40 },
+            new UpgradeData(){ level = 4, cost = 5000, damageValue = 50 },
+            new UpgradeData(){ level = 5, cost = 6000, damageValue = 70 },
+            new UpgradeData(){ level = 6, cost = 7000, damageValue = 90 },
+            new UpgradeData(){ level = 7, cost = 8000, damageValue = 120 },
+            new UpgradeData(){ level = 8, cost = 9000, damageValue = 150 },
+            new UpgradeData(){ level = 9, cost = 10000, damageValue = 180 },
+            new UpgradeData(){ level = 10, cost = 11000, damageValue = 230 },
         };
     }
 
@@ -202,6 +204,7 @@ public class DataManager : MonoSingleton<DataManager>
     public const string PLAYERPREFS_TUTORIAL_FINISH_KEY = "PLAYERPREFS_TUTORIAL_FINISH_KEY";
     public const string PLAYERPREFS_UPGRADE_LEVEL_KEY = "PLAYERPREFS_UPGRADE_LEVEL_KEY";
     public const string PLAYERPREFS_WEAPON_SKIN_KEY = "PLAYERPREFS_WEAPON_SKIN_KEY";
+    public const string PLAYERPREFS_GAME_CLEAR_KEY = "PLAYERPREFS_GAME_CLEAR_KEY";
 
     public GameObject GetSavedSkinPrefab()
     {
@@ -254,6 +257,17 @@ public class DataManager : MonoSingleton<DataManager>
                 return 0;
             }
         }
+    }
+
+    public int GetLastStageID()
+    {
+        if (StageDataList != null && StageDataList.Count > 0)
+        {
+            var data = StageDataList[StageDataList.Count - 1];
+            return data.stageID;
+        }
+
+        return -1;
     }
 
     public void SaveStageID(int id)
@@ -373,6 +387,25 @@ public class DataManager : MonoSingleton<DataManager>
         set
         {
             PlayerPrefs.SetInt(PLAYERPREFS_WEAPON_SKIN_KEY, value);
+        }
+    }
+
+    public int IsGameClear
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey(PLAYERPREFS_GAME_CLEAR_KEY))
+                return PlayerPrefs.GetInt(PLAYERPREFS_GAME_CLEAR_KEY);
+            else
+            {
+                PlayerPrefs.SetInt(PLAYERPREFS_GAME_CLEAR_KEY, 0);
+                return PlayerPrefs.GetInt(PLAYERPREFS_GAME_CLEAR_KEY);
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(PLAYERPREFS_GAME_CLEAR_KEY, value);
         }
     }
 

@@ -46,7 +46,7 @@ public class UI_SelectAbility : UIBase
     public void Setup()
     {
         var list = DataManager.Instance.AbilityDataList;
-        selectedAbilityList = list.OrderBy(x => Guid.NewGuid()).Take(3).ToList(); //랜덤으로 선택
+        selectedAbilityList = GetThreeDifferentElements(list);
 
         if (selectedAbilityList != null && selectedAbilityList.Count == 3)
         {
@@ -65,6 +65,7 @@ public class UI_SelectAbility : UIBase
     private void OnClickBtn(Button btn)
     {
         var player = InGameManager.Instance.player;
+
 
         if (btn == leftBtn)
         {
@@ -90,4 +91,28 @@ public class UI_SelectAbility : UIBase
 
         }
     }
+
+    public static List<T> GetThreeDifferentElements<T>(List<T> inputList)
+    {
+        if (inputList.Count < 3)
+        {
+            Debug.Log("Erorr");
+        }
+
+        List<T> result = new List<T>();
+        HashSet<int> indices = new HashSet<int>();
+
+        while (indices.Count < 3)
+        {
+            int index = UnityEngine.Random.Range(0, inputList.Count);
+            if (!indices.Contains(index))
+            {
+                indices.Add(index);
+                result.Add(inputList[index]);
+            }
+        }
+
+        return result;
+    }
+
 }

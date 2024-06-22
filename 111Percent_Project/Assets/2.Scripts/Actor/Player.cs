@@ -351,13 +351,16 @@ public partial class Player : Agent
             if (enemyChild != null)
             {
                 //Debug.Log("Hit Enemy!!");
-                var damage = 10;
+                var damage = 100;
                 damage += (int)((float)damage * abilityBuff_IncreaseAttack);
-                damage += Random.Range(0, 3);
+                damage += Random.Range(0, 30);
                 var upgradeData = DataManager.Instance.GetCurrentUpgradeData();
                 if (upgradeData != null)
                     damage += upgradeData.damageValue;
-
+                damage += DataManager.Instance.CurrentWeaponSkinIndex * 20;
+#if UNITY_EDITOR
+                damage += cheatDmg;
+#endif
                 enemyChild.GetHit(damage);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
@@ -418,7 +421,7 @@ public partial class Player : Agent
                     fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * 25f;
                 }
 
-                defenseInputCooltimeCounter = defenseInputCooltime / 2f; //성공한 경우 시간 단축
+                defenseInputCooltimeCounter = defenseInputCooltime / 4f; //성공한 경우 시간 단축
 
                 Vector3 pos = other.ClosestPoint(transform.position);
                 pos.z = 3f;
@@ -479,7 +482,17 @@ public partial class Player : Agent
             {
                 Defense();
             }
+
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                if (cheatDmg != 0)
+                    cheatDmg = 0;
+                else
+                    cheatDmg = 1000;
+            }
         }
     }
 #endif
+
+    private int cheatDmg = 0;
 }
