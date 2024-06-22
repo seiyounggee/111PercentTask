@@ -18,13 +18,18 @@ public class Effect : MonoBehaviour
 
     public Action callback = null;
 
-    public void OnEnable()
+    public virtual void OnEnable()
     {
         if (effectType == EffectType.AutoActiveFalse)
         {
             if (activeFalseTime > 0f)
                 UtilityInvoker.Invoke(this, () => { Disable(); }, activeFalseTime);
         }
+    }
+
+    public virtual void OnDisable()
+    { 
+    
     }
 
     private void Disable()

@@ -14559,5 +14559,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0255bba5c7596774596c5282393658d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectType: 0
+  effectType: 1
   activeFalseTime: 3

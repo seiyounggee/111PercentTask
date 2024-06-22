@@ -128,7 +128,8 @@ public class DataManager : MonoSingleton<DataManager>
             new AbilityData() {  id = 4, type = (int)CommonDefine.Ability.DecreaseDefenseCooltime, name = "Decrease Defense Cooltime", desc = "Cooltime - 25%" },
             new AbilityData() {  id = 5, type = (int)CommonDefine.Ability.IncreaseAttackRange, name = "Increase Attack Range", desc = "Attack Range + 15%" },
             new AbilityData() {  id = 6, type = (int)CommonDefine.Ability.IncreaseDefenseRange, name = "Increase Defense Range", desc = "Defense Range + 10%" },
-            new AbilityData() {  id = 7, type = (int)CommonDefine.Ability.Laser, name = "Laser", desc = "Laser Attack +20%" }
+            new AbilityData() {  id = 7, type = (int)CommonDefine.Ability.Laser, name = "Laser", desc = "Laser Attack +20%" },
+            new AbilityData() {  id = 8, type = (int)CommonDefine.Ability.Missile, name = "Missile", desc = "Missile Attack +5%" }
         };
 
         UpgradeDataList = new List<UpgradeData>()

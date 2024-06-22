@@ -71,5 +71,6 @@ public class CommonDefine
         IncreaseAttackRange,
         IncreaseDefenseRange,
         Laser,
+        Missile,
     }
 }

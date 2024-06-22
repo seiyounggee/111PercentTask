@@ -210,6 +210,7 @@ MonoBehaviour:
     jumpUpSpeed_PlayerCollision: 0
     jumpUpSpeed_PlayerDefense: 0
   AbilityDataList: []
+  UpgradeDataList: []
 --- !u!1 &2383019221590341605
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,5 +737,6 @@ MonoBehaviour:
   Effect_GibletExplodeStone: {fileID: 7373243705534047242, guid: b9d0d21c310e1a744ba502e376395606, type: 3}
   Effect_SwordSlashThickRed: {fileID: 6252778529602162175, guid: 865891b5f550fab469efa82c44332906, type: 3}
   Effect_LaserBeamRed: {fileID: 155510759632876812, guid: 1113bcc3242d7bf4f80edfab2461f29b, type: 3}
+  Effect_FireballMissileFire: {fileID: 5573146887328956568, guid: fec79a4c28e39ef4d8e65103ef93ec7a, type: 3}
   coinTexture: {fileID: 2800000, guid: 33effd6735e414dc7b70ded5e8bb47f8, type: 3}
   gemTexture: {fileID: 2800000, guid: 6d034811652a84633bc8c63d22ce5574, type: 3}

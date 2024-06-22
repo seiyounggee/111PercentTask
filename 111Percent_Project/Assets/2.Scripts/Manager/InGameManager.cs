@@ -16,7 +16,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
     public CommonDefine.InGameState CurrentInGameState = CommonDefine.InGameState.None;
     public CommonDefine.GameEndType CurrentGameEndType = CommonDefine.GameEndType.None;
 
-    public long GameScore { get; set; } = 0;
+    public int GameScore { get; set; } = 0;
 
     public void StartInGame()
     {
@@ -286,14 +286,14 @@ public partial class InGameManager : MonoSingleton<InGameManager>
         {
             case CommonDefine.GameEndType.GameOver:
                 {
-                    DataManager.Instance.Coin += Random.Range(100, 1000);
+                    DataManager.Instance.Coin += GameScore / 20;
                     PrefabManager.Instance.UI_OutGame.RegisterTween = true;
                 }
                 break;
 
             case CommonDefine.GameEndType.GameClear:
                 {
-                    DataManager.Instance.Coin += Random.Range(1000, 5000);
+                    DataManager.Instance.Coin += GameScore / 15;
                     PrefabManager.Instance.UI_OutGame.RegisterTween = true;
 
                     //다음 스테이지로...!
@@ -307,7 +307,7 @@ public partial class InGameManager : MonoSingleton<InGameManager>
 
     public void AddScore(int score)
     {
-        if (GameScore + score < long.MaxValue)
+        if (GameScore + score < int.MaxValue)
         {
             GameScore += score;
 

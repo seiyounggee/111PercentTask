@@ -9,6 +9,7 @@ public partial class Player : Agent
     [SerializeField] Trigger_Callback attackTrigger = null;
     [SerializeField] Trigger_Callback defenseTrigger = null;
     [SerializeField] Transform laserPoint = null;
+    [SerializeField] Transform missilePoint = null;
 
     private Transform rightHand = null;
     private Transform leftHand = null;
@@ -101,6 +102,9 @@ public partial class Player : Agent
         abilityBuff_IncreaseAttackRange = 0f;
         abilityBuff_IncreaseDefenseRange = 0f;
         abilityBuff_LaserAttack = 0;
+        abilityBuff_Missile = 0;
+
+        missileSpawnedList.Clear();
     }
 
     public void SetSkin(GameObject skin = null)

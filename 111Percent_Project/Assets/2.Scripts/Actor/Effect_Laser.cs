@@ -24,7 +24,7 @@ public class Effect_Laser : Effect
         if (lineRenderer != null && lineRenderer.positionCount >= 2
             && fromTrans != null && toTrans != null)
         {
-            lineRenderer.SetPosition(0, fromTrans.transform.position + Vector3.up);
+            lineRenderer.SetPosition(0, fromTrans.transform.position);
             lineRenderer.SetPosition(1, toTrans.transform.position);
 
             if (laserEnd != null)

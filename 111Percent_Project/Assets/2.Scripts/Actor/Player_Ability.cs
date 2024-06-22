@@ -12,17 +12,25 @@ public partial class Player
     private float abilityBuff_IncreaseAttackRange = 0f;
     private float abilityBuff_IncreaseDefenseRange = 0f;
     private int abilityBuff_LaserAttack = 0;
+    private int abilityBuff_Missile = 0;
 
 
     private float laserAbilityCooltimeCounter = 0;
+    private float missleAbilityCooltimeCounter = 0;
 
+    private List<Effect_Bullet> missileSpawnedList = new List<Effect_Bullet>();
 
     private void FixedUpdate_Ability()
     {
         if (isDie)
             return;
 
+        abilityBuff_LaserAttack = 1;
+        abilityBuff_Missile = 1;
+
         var enemyChild = InGameManager.Instance.CurrentEnemyChild();
+
+        #region Laser
         if (abilityBuff_LaserAttack > 0)
         {
             laserPoint.SafeSetActive(true);
@@ -36,27 +44,32 @@ public partial class Player
                 laser.TryGetComponent<Effect_Laser>(out var laserScript);
                 if (laserScript != null)
                 {
+                    var additionalDmg = 0;
+                    var upgradeData = DataManager.Instance.GetCurrentUpgradeData();
+                    if (upgradeData != null)
+                        additionalDmg += upgradeData.damageValue / 2;
+
                     laserScript.Setup(laserPoint, enemyChild.transform);
 
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack);
+                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
                     }, 0.1f, "laserAttack_1");
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack);
+                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
                     }, 0.7f, "laserAttack_2");
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack);
+                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
                     }, 1.3f, "laserAttack_3");
                     UtilityInvoker.Invoke(this, () =>
                     {
                         if (enemyChild != null)
-                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack);
+                            enemyChild.GetHit(3 + 3 * abilityBuff_LaserAttack + additionalDmg);
                     }, 2f, "laserAttack_4");
                 }
             }
@@ -70,6 +83,60 @@ public partial class Player
         }
         else
             laserPoint.SafeSetActive(false);
+        #endregion
+
+        #region Missle
+        if (abilityBuff_Missile > 0)
+        {
+            missilePoint.SafeSetActive(true);
+
+            if (missleAbilityCooltimeCounter <= 0 && enemyChild != null)
+            {
+                missleAbilityCooltimeCounter = 0.3f;
+                var pos = transform.position;
+                var rot = Quaternion.LookRotation(Vector3.up);
+                var bullet = InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_FireballMissileFire, pos, rot);
+                if (bullet != null)
+                {
+                    bullet.TryGetComponent<Effect_Bullet>(out var bulletScript);
+                    if (bulletScript)
+                    {
+                        bulletScript.Setup(missilePoint, enemyChild.transform);
+                        missileSpawnedList.Add(bulletScript);
+                    }
+                }
+            }
+            else
+            {
+                missleAbilityCooltimeCounter -= Time.fixedDeltaTime;
+
+                if (missleAbilityCooltimeCounter < 0)
+                    missleAbilityCooltimeCounter = 0;
+            }
+
+            for (int i = missileSpawnedList.Count - 1; i >= 0; --i)
+            {
+                if (missileSpawnedList[i] == null)
+                    continue;
+
+                if (missileSpawnedList[i].gameObject.SafeIsActive() == false)
+                {
+                    var additionalDmg = 0;
+                    var upgradeData = DataManager.Instance.GetCurrentUpgradeData();
+                    if (upgradeData != null)
+                        additionalDmg += upgradeData.damageValue / 2;
+
+                    //지나간 bullet은 처리x
+                    if (enemyChild != null && Vector3.Distance(missileSpawnedList[i].gameObject.transform.position, enemyChild.transform.position) < 5f)
+                        enemyChild.GetHit(3 * abilityBuff_Missile + additionalDmg);
+
+                    missileSpawnedList.Remove(missileSpawnedList[i]);
+                }
+            }
+        }
+        else
+            missilePoint.SafeSetActive(false);
+        #endregion
     }
 
     public void GetAbility(DataManager.AbilityData abilityData)
@@ -123,6 +190,11 @@ public partial class Player
             case CommonDefine.Ability.Laser:
                 {
                     abilityBuff_LaserAttack += 1;
+                }
+                break;
+            case CommonDefine.Ability.Missile:
+                {
+                    abilityBuff_Missile += 1;
                 }
                 break;
         }
