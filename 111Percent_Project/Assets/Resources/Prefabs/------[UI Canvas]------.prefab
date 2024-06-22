@@ -123,6 +123,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1811819022845930245}
     m_Modifications:
+    - target: {fileID: 3088435476268271685, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088435476268271685, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192169356555228281, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 515.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192169356555228281, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 110.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976622090842663771, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
+      propertyPath: m_text
+      value: "Created by\nseiyounggee\n2024.06.19~23\n\n111% \nTask Project"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976622090842663771, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
+      propertyPath: m_fontSize
+      value: 75.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6184332178053013937, guid: 3d3bc41fccde71240a5cff20aaac92fd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

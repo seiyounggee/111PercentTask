@@ -25,8 +25,12 @@ public class Enemy_Child : MonoBehaviour
 
     private float ontriggerStayTimer = 0f;
 
+    public Collider Collider { get; set; }
+
     private void Awake()
     {
+        Collider = GetComponent<Collider>();
+
         enemyBase = GetComponentInParent<Enemy>();
         meshRenderer = GetComponent<MeshRenderer>();
         if (meshRenderer == null)

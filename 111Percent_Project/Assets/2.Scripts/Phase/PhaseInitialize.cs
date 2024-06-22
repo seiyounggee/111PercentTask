@@ -40,7 +40,6 @@ public class PhaseInitialize : PhaseBase
         //Load DB
         //Login
 
-        
         yield return new WaitForSeconds(1f);
 
         PhaseManager.Instance.ChangePhase(CommonDefine.Phase.OutGame);

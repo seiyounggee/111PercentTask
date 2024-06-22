@@ -33,6 +33,7 @@ public partial class InGameManager
         Effect_SwordSlashThickRed,
         Effect_LaserBeamRed,
         Effect_FireballMissileFire,
+        Effect_DamageText,
     }
 
     private const int INITIAL_POOL_NUMBER = 10;
@@ -62,6 +63,7 @@ public partial class InGameManager
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_SwordSlashThickRed, PooledType.Effect_SwordSlashThickRed);
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_LaserBeamRed, PooledType.Effect_LaserBeamRed);
         PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_FireballMissileFire, PooledType.Effect_FireballMissileFire);
+        PoolObj(isAdditionalPool, PrefabManager.Instance.Effect_DamageText, PooledType.Effect_DamageText);
               
     }
 
@@ -197,6 +199,9 @@ public partial class InGameManager
                                 break;
                             case PooledType.Effect_FireballMissileFire:
                                 PoolObj(true, PrefabManager.Instance.Effect_FireballMissileFire, type);
+                                break;
+                            case PooledType.Effect_DamageText:
+                                PoolObj(true, PrefabManager.Instance.Effect_DamageText, type);
                                 break;
                             default:
                                 break;

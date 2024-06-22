@@ -357,6 +357,7 @@ public partial class Player : Agent
                 var upgradeData = DataManager.Instance.GetCurrentUpgradeData();
                 if (upgradeData != null)
                     damage += upgradeData.damageValue;
+
                 enemyChild.GetHit(damage);
 
                 Vector3 pos = other.ClosestPoint(transform.position);
@@ -365,6 +366,21 @@ public partial class Player : Agent
                 pos.z = 3f;
                 InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_Hit, pos, Quaternion.identity);
                 InGameManager.Instance.ShakeCamera(5f, 0.2f);
+
+                var dmgTxt = InGameManager.Instance.ActivatePooledObj(InGameManager.PooledType.Effect_DamageText, pos, Quaternion.identity);
+                if (dmgTxt != null)
+                {
+                    dmgTxt.TryGetComponent<Effect_DamageText>(out var dmgScript);
+                    if (dmgScript != null)
+                    {
+                        var randomVel = new Vector3(
+                                        Random.Range(0.1f, 2f) * (Random.value < 0.5f ? -1 : 1),
+                                        Random.Range(5f, 10f),
+                                        0f
+                        );
+                        dmgScript.Setup(pos, randomVel, damage.ToString());
+                    }
+                }
 
                 ++CurrentCombo;
                 PrefabManager.Instance.UI_InGame.UpdateCombo("Combo x" + CurrentCombo.ToString());

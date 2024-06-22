@@ -55,24 +55,6 @@ public class Enemy : Agent
             {
                 this.transform.position += Vector3.up * Time.fixedDeltaTime * fallDownVelocity.y;
                 fallDownVelocity -= Vector3.up * Time.fixedDeltaTime * fallDownSpeed;
-
-                if (fallDownVelocity.y <= -32f) //너무 빠르면 뚫어버려서..
-                    fallDownVelocity = new Vector3(fallDownVelocity.x, -32f, fallDownVelocity.z);
-
-                //플레이어 밑으로 가지 않도록...!
-                if (InGameManager.Instance.player != null)
-                {
-                    //rigidbody높이가 1.5정도 
-                    var currentPlayerY = InGameManager.Instance.player.transform.position.y + 1.5f;
-                    var currentEnemyChild = CurrentEnemyChild();
-                    if (currentEnemyChild != null && InGameManager.Instance.player.isDie == false)
-                    {
-                        if (currentEnemyChild.transform.position.y <= currentPlayerY)
-                        {
-                            transform.position = new Vector3(transform.position.x, currentPlayerY, transform.position.z);
-                        }
-                    }
-                }
             }
         }
     }
@@ -157,6 +139,7 @@ public class Enemy : Agent
 
         return null;
     }
+
 
     private bool IsGrounded()
     {

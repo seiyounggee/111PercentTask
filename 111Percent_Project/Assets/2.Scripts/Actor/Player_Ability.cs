@@ -25,9 +25,6 @@ public partial class Player
         if (isDie)
             return;
 
-        abilityBuff_LaserAttack = 1;
-        abilityBuff_Missile = 1;
-
         var enemyChild = InGameManager.Instance.CurrentEnemyChild();
 
         #region Laser
