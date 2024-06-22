@@ -32,7 +32,7 @@ public class UI_Inventory : UIBase
         base.Show();
 
         var data = DataManager.Instance.GetCurrentStageData();
-        for (int i = 0; i < lockObj.Length; i++)
+        for (int i = 1; i < lockObj.Length; i++)
         {
             lockObj[i].SafeSetActive(i + 1 >= data.stageNumber);
         }

@@ -294,6 +294,19 @@ public partial class Player : Agent
                 transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         }
 
+        //적 뚤고 올라가지 않게 방지...
+        if (isGrounded == false)
+        {
+            var enemyChild = InGameManager.Instance.CurrentEnemyChild();
+            if (enemyChild != null)
+            {
+                if (enemyChild.transform.position.y < this.transform.position.y)
+                {
+                    jumpUpVelocity.y = 0;
+                }
+            }
+        }
+
         if (defenseInputCooltimeCounter > 0)
             defenseInputCooltimeCounter -= Time.fixedDeltaTime;
     }

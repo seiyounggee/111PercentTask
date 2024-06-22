@@ -32,6 +32,7 @@ public class PhaseInitialize : PhaseBase
     IEnumerator PhaseInitializeCoroutine()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Application.targetFrameRate = 60;
 
         yield return null;
 
